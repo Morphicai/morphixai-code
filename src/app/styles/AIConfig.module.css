@@ -1,0 +1,169 @@
+/* AI配置组件样式 */
+.content {
+    padding: 1rem;
+    --background: #f8f9fa;
+}
+
+.instructions {
+    margin-bottom: 1.5rem;
+}
+
+.instructions h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.instructions ion-list {
+    background: transparent;
+    padding: 0;
+}
+
+.instructions ion-item {
+    --background: transparent;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.instructions ion-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 193, 7, 0.1);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.saveButton {
+    margin-top: 1rem;
+    height: 48px;
+    --border-radius: 12px;
+}
+
+.temperatureSlider {
+    width: 100%;
+    margin: 1rem 0;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.temperatureSlider:hover {
+    opacity: 1;
+}
+
+.temperatureSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+}
+
+.temperatureSlider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+    border: none;
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .content {
+        --background: #1a1a1a;
+    }
+    
+    .instructions h4 {
+        color: #f0f0f0;
+    }
+    
+    .instructions ion-item {
+        --color: #e0e0e0;
+    }
+    
+    .instructions ion-note {
+        background: rgba(255, 193, 7, 0.2);
+        color: #f0f0f0;
+    }
+    
+    .temperatureSlider {
+        background: #555;
+    }
+    
+    .temperatureSlider::-webkit-slider-thumb {
+        background: #8fa4ff;
+    }
+    
+    .temperatureSlider::-moz-range-thumb {
+        background: #8fa4ff;
+    }
+}
+
+/* 卡片样式 */
+ion-card {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-header {
+    padding-bottom: 0.5rem;
+}
+
+ion-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+    ion-card {
+        --background: #2d2d2d;
+    }
+    
+    ion-card-title {
+        color: #f0f0f0;
+    }
+}
+
+/* 输入框样式 */
+ion-input {
+    --background: #fff;
+    --border-radius: 8px;
+    --padding: 12px;
+    margin-top: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    ion-input {
+        --background: #3d3d3d;
+        --color: #f0f0f0;
+    }
+}
+
+/* 选择器样式 */
+ion-select {
+    --background: #fff;
+    --border-radius: 8px;
+    --padding: 8px 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+    ion-select {
+        --background: #3d3d3d;
+        --color: #f0f0f0;
+    }
+}
