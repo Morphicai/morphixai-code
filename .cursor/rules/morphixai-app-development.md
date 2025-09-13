@@ -57,7 +57,7 @@ import { home, homeOutline, camera, cameraOutline } from 'ionicons/icons';
 // 样式导入
 import styles from './styles/App.module.css';
 ```
-
+你无需关心 @morphixai/ 系列库的安装，它会自动安装。
 ### 组件结构
 ```jsx
 export default function App() {

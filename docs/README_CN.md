@@ -211,6 +211,13 @@ AI：我来添加：
 - 项目技术文档 — [technical/project-overview.md](./technical/project-overview.md)
 - 开发指南 — [requirements/development-guidelines.md](./requirements/development-guidelines.md)
 
+## 🗺 路线图
+- [ ] 支持全屏模式
+- [ ] 引导优先采用 iOS 风格的模态弹窗
+- [ ] 内置能力 + 专业属性展示面板
+- [ ] 支持 Flutter 开发
+- [ ] 支持 GitHub Actions
+
 ## 🤝 参与贡献
 欢迎通过 Issue 或 Pull Request 参与贡献。开发环境搭建与本地调试请参考 `DEVELOPER.md`。
 

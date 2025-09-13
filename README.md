@@ -25,6 +25,7 @@
 - [More Resources](#-more-resources)
 - [Contributing](#-contributing)
 - [License](#-license)
+ - [Glossary](#-glossary)
 
 ## 🚀 Quick Start
 
@@ -211,8 +212,27 @@ AI: I'll add it:
 - Project Technical Documentation — [docs/technical/project-overview.md](./docs/technical/project-overview.md)
 - Development Guidelines — [docs/requirements/development-guidelines.md](./docs/requirements/development-guidelines.md)
 
+## 🗺️ Roadmap
+- [ ] 支持全屏模式
+- [ ] 引导优先采用这种 iOS 这种模态弹窗
+- [ ] 支持 Flutter 开发
+- [ ] 支持 GitHub Actions
+- [ ] 内置能力 + 专业属于展示面板
+
 ## 🤝 Contributing
 Contributions are welcome! Please open an issue or pull request. For local development guidance, see `DEVELOPER.md`.
 
 ## 📄 License
 This project is licensed under the MIT License.
+
+## 📘 Glossary
+- **Mini‑App**: A small, self-contained app packaged to run inside MorphixAI.
+- **App Shell**: The host container (web/native) that loads and runs mini‑apps.
+- **HostClient (Host SDK)**: The bridge API exposed by the host for auth, app CRUD, sharing, etc.
+- **Unique ID (unique_id)**: Stable identifier for a project across environments; used to fetch/create remote apps.
+- **App ID (id)**: Server-generated identifier for a specific remote app resource.
+- **Version**: Semantic version of the remote app’s code/config, e.g., 0.1.0.
+- **Build Code**: Optimized runtime bundle stored by server for execution.
+- **Read‑Only Mode**: UI state where editing/publishing is disabled (e.g., not owner or not logged in).
+- **Preview URL**: Shareable URL to run/preview the remote mini‑app.
+- **Project ID**: Local development project identifier used by the dev shell.
