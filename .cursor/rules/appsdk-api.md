@@ -352,7 +352,10 @@ ModelGroup[]
 ```typescript
 {
   collection: string       // 集合名称
-  data: object             // 要保存的数据对象
+  data: {                  // 要保存的数据对象
+    id?: string;           // 可选：需要生成特定记录（如 config）时传入固定 id
+    [key: string]: any;    // 其他业务字段
+  }
 }
 ```
 
@@ -362,6 +365,27 @@ ModelGroup[]
   id: string;              // 自动生成的数据ID
   ...data                  // 原始数据对象的所有字段
 }
+```
+
+**说明：**
+- 如果传入 `data.id`，将使用该 `id` 创建该记录（用于需要固定主键的场景，如 `config`）。
+- 如果不传 `id`，系统会自动生成唯一 `id` 并作为返回结果返回（适用于一个集合中存在多条数据的常规场景）。
+- 如果使用已存在的 `id` 调用 `createData` 将会报错；如需修改已有记录，请使用 `updateData`。
+
+**示例：**
+```javascript
+// 1) 需要固定ID（如 config）
+await AppSdk.appData.createData({
+  collection: 'settings',
+  data: { id: 'config', theme: 'dark', lang: 'zh-CN' }
+});
+
+// 2) 常规多条数据，自动生成ID
+const res = await AppSdk.appData.createData({
+  collection: 'users',
+  data: { name: 'Alice', age: 30 }
+});
+console.log(res.id); // 系统生成的唯一ID
 ```
 
 #### getData({collection, id})
@@ -413,7 +437,7 @@ const adults = await AppSdk.appData.queryData({
 {
   collection: string       // 集合名称
   id: string               // 数据ID
-  data: object             // 要更新的数据对象
+  data: object             // 要更新的数据对象, 不包含id字段
 }
 ```
 
