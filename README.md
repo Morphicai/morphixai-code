@@ -1,6 +1,6 @@
 # MorphixAI Code — Rapid, Ready-to-Use Mini‑Apps Framework
 
-> 🇺🇸 English | [🇨🇳 中文](./docs/README_CN.md)
+> 🇺🇸 English | [🇨🇳 中文](./docs/README_CN.md) | [🇯🇵 日本語](./docs/README_JA.md)
 
 > **Build and ship ready-to-use mini‑apps fast**
 

@@ -1,6 +1,6 @@
 # MorphixAI Code — 快速开发、可直接使用的小工具应用框架
 
-> [🇺🇸 English](../README.md) | 🇨🇳 中文
+> [🇺🇸 English](../README.md) | 🇨🇳 中文 | [🇯🇵 日本語](./README_JA.md)
 
 > **快速构建并上线可直接使用的小工具应用**
 
