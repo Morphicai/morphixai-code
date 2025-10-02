@@ -1,6 +1,6 @@
 # MorphixAI Code — Rapid, Ready-to-Use Mini‑Apps Framework
 
-> 🇺🇸 English | [🇨🇳 中文](./docs/README_CN.md) | [🇯🇵 日本語](./docs/README_JA.md)
+> 🇺🇸 English | [🇨🇳 中文](./docs/README_CN.md) | [🇯🇵 日本語](./docs/README_JA.md) | [🇰🇷 한국어](./docs/README_KO.md)
 
 > **Build and ship ready-to-use mini‑apps fast**
 
@@ -213,11 +213,11 @@ AI: I'll add it:
 - Development Guidelines — [docs/requirements/development-guidelines.md](./docs/requirements/development-guidelines.md)
 
 ## 🗺️ Roadmap
-- [ ] 支持全屏模式
-- [ ] 引导优先采用这种 iOS 这种模态弹窗
-- [ ] 支持 Flutter 开发
-- [ ] 支持 GitHub Actions
-- [ ] 内置能力 + 专业属于展示面板
+- [ ] Support fullscreen mode
+- [ ] Prefer iOS‑style modal onboarding
+- [ ] Built‑in capabilities + professional attributes panel
+- [ ] Flutter development support
+- [ ] GitHub Actions support
 
 ## 🤝 Contributing
 Contributions are welcome! Please open an issue or pull request. For local development guidance, see `DEVELOPER.md`.
