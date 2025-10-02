@@ -1,0 +1,26 @@
+{
+  "baseUrl": "https://app-shell.focusbe.com/api/prompts",
+  "prompts": {
+    "cursor": {
+      "version": "1.0.0",
+      "files": [
+        "morphixai-app-development.md",
+        "file-protection.md",
+        "docs-context.md",
+        "appsdk-api.md",
+        "appsdk-best-practices.md",
+        "code_standards.md",
+        "icons-usage.md",
+        "README.md"
+      ],
+      "path": ".cursor/rules",
+      "url": "https://app-shell.focusbe.com/api/prompts/cursor"
+    },
+    "claude": {
+      "version": "1.0.0",
+      "files": ["CLAUDE.md"],
+      "path": "docs",
+      "url": "https://app-shell.focusbe.com/api/prompts/claude"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@morphixai/cli",
+  "version": "1.0.0",
+  "description": "MorphixAI Code CLI tool with embedded dev console",
+  "type": "module",
+  "bin": {
+    "morphixai": "./bin/morphixai.js",
+    "morphix": "./bin/morphixai.js"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "node src/commands/dev.js",
+    "build": "node src/commands/build.js",
+    "test": "echo \"No tests yet\"",
+    "lint": "echo \"No linting yet\""
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "inquirer": "^9.0.0",
+    "chalk": "^5.0.0",
+    "ora": "^7.0.0",
+    "fs-extra": "^11.0.0",
+    "chokidar": "^3.5.3",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "tailwindcss": "^4.1.11",
+    "execa": "^8.0.0",
+    "node-fetch": "^3.0.0",
+    "qrcode.react": "^4.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@ionic/react": "8.6.2"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates-registry.json",
+    "prompts-registry.json"
+  ],
+  "keywords": [
+    "morphixai",
+    "cli",
+    "react",
+    "ionic",
+    "mobile",
+    "template"
+  ],
+  "author": "MorphixAI",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

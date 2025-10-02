@@ -1,0 +1,114 @@
+/* 计数器组件样式 */
+.counterCard {
+    margin: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.title {
+    color: white;
+    font-weight: 600;
+}
+
+.counterDisplay {
+    text-align: center;
+    margin: 24px 0;
+}
+
+.countValue {
+    font-size: 3rem;
+    font-weight: bold;
+    display: inline-block;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    min-width: 100px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 24px 0;
+    align-items: center;
+}
+
+.actionButton {
+    --color: white;
+    --border-color: white;
+    --background: transparent;
+    --background-hover: rgba(255, 255, 255, 0.1);
+    --border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+
+.resetButton {
+    --background: rgba(255, 255, 255, 0.2);
+    --color: white;
+    --border-radius: 20px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    font-weight: 600;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.info {
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info li {
+    margin: 6px 0;
+    padding-left: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.info li::before {
+    content: '•';
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    left: -8px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .countValue {
+        font-size: 2.5rem;
+        padding: 12px 20px;
+        min-width: 80px;
+    }
+    
+    .buttonGroup {
+        flex-wrap: wrap;
+    }
+    
+    .actionButton {
+        width: 44px;
+        height: 44px;
+    }
+}

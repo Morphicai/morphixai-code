@@ -1,0 +1,8 @@
+/* 主应用样式 */
+
+.content {
+  --padding: 0;
+  background: #ffffff;
+  min-height: 100vh;
+  color: #1f2937;
+}

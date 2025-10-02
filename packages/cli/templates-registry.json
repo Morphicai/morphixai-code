@@ -1,0 +1,12 @@
+{
+  "templates": [
+    {
+      "name": "react-ionic",
+      "package": "@morphixai/template-react-ionic",
+      "version": "^1.0.0",
+      "default": true,
+      "displayName": "React + Ionic",
+      "description": "MorphixAI mini-app template with React and Ionic"
+    }
+  ]
+}

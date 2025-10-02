@@ -1,51 +1,40 @@
 {
-    "name": "morphixai-code",
+    "name": "morphixai-monorepo",
     "version": "1.0.0",
-    "description": "A simple template for MorphixAI applications",
+    "description": "MorphixAI Code Monorepo - CLI tools and templates for MorphixAI applications",
     "type": "module",
-    "main": "app.jsx",
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "packages/templates/*"
+    ],
     "scripts": {
-        "dev": "node scripts/dev-with-watch.js",
-        "dev:vite": "vite",
-        "restore-apps": "node scripts/restore-apps.js",
-        "postinstall": "node scripts/generate-project-id.js",
-        "generate-id": "node scripts/generate-project-id.js"
+        "dev": "pnpm --filter @morphixai/cli dev",
+        "build": "pnpm --recursive run build",
+        "test": "pnpm --recursive run test",
+        "lint": "pnpm --recursive run lint",
+        "publish-packages": "pnpm changeset publish"
     },
     "keywords": [
         "morphixai",
         "react",
         "ionic",
         "mobile",
-        "template"
+        "cli",
+        "template",
+        "monorepo"
     ],
     "author": "MorphixAI",
     "license": "MIT",
-    "peerDependencies": {
-        "@ionic/react": "8.6.2",
-        "ionicons": "7.4.0",
-        "react": "19.0.0"
-    },
     "devDependencies": {
-        "@vitejs/plugin-react": "^4.0.0",
-        "chokidar": "^3.5.3",
-        "vite": "^5.0.0"
+        "@changesets/cli": "^2.27.0",
+        "turbo": "^1.10.0"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "pnpm": ">=7.0.0"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.1.11",
-        "qrcode.react": "^4.2.0",
-        "react": "19.0.0",
-        "react-dom": "19.0.0",
-        "tailwindcss": "^4.1.11"
-    },
-    "morphixai": {
-        "version": "1.0.0",
-        "entry": "app.jsx",
-        "framework": "react-ionic",
-        "features": [
-            "css-modules",
-            "ionicons",
-            "morphixai-components"
-        ],
-        "minAppRunnerVersion": "1.0.0"
+        "@morphixai/cli": "workspace:^1.0.0"
     }
 }

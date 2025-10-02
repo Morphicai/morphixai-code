@@ -1,0 +1,537 @@
+/* AppShell Iframe 样式 */
+
+.container {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Iframe 包装器 - 占满屏幕 */
+.iframeWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* 浮层容器 - 固定定位 */
+.overlayContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 让点击穿透到 iframe */
+    z-index: 1000;
+}
+
+/* Toggle 按钮 - 左下角 */
+.toggleButton {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    pointer-events: auto; /* 恢复按钮点击 */
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.toggle {
+    --border-radius: 50%;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    width: 48px;
+    height: 48px;
+    --background: var(--ion-color-primary, #3880ff);
+    --background-hover: var(--ion-color-primary-shade, #3171e0);
+    --box-shadow: 0 4px 16px rgba(56, 128, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.toggle:hover {
+    transform: scale(1.1);
+    --box-shadow: 0 8px 24px rgba(56, 128, 255, 0.4);
+}
+
+/* 控制面板 */
+.controlPanel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    max-width: 400px;
+    min-width: 300px;
+    pointer-events: auto; /* 恢复面板点击 */
+    margin: 0;
+    --background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.cardContent {
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    padding: 0;
+}
+
+/* 控制栏样式 - 可折叠 */
+.controls {
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #dee2e6;
+    position: relative;
+}
+
+.controlsVisible {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.controlsHidden {
+    max-height: 0;
+    opacity: 0;
+}
+
+.controlsContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    min-height: 64px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.statusIcon {
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.statusInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.statusText {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ion-color-dark, #222);
+    letter-spacing: 0.5px;
+}
+
+.timestamp {
+    font-size: 11px;
+    color: var(--ion-color-medium, #666);
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.controlButtons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.controlButton {
+    --border-radius: 8px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.controlButton:hover {
+    transform: translateY(-1px);
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 错误提示样式 */
+.error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #fff5f5;
+    border-left: 4px solid var(--ion-color-danger, #eb445a);
+    margin: 0 16px 16px;
+    border-radius: 4px;
+}
+
+.error span {
+    flex: 1;
+    font-size: 14px;
+    color: var(--ion-color-danger, #eb445a);
+}
+
+/* Iframe 样式 */
+.iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background: #ffffff;
+}
+
+/* 加载覆盖层 */
+.loadingOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 10;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .toggleButton {
+        bottom: 16px;
+        left: 16px;
+    }
+    
+    .toggle {
+        width: 44px;
+        height: 44px;
+        --padding-start: 10px;
+        --padding-end: 10px;
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+    }
+    
+    .controlPanel {
+        top: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
+        min-width: auto;
+        width: calc(100% - 32px);
+    }
+    
+    .controlsContent {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .status {
+        width: 100%;
+    }
+    
+    .controlButtons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .statusInfo {
+        gap: 2px;
+    }
+}
+
+/* 暗色主题支持 */
+@media (prefers-color-scheme: dark) {
+    .controlPanel {
+        --background: rgba(30, 30, 30, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .controls {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+        border-bottom-color: #404040;
+    }
+    
+    .statusText {
+        color: #ffffff;
+    }
+    
+    .timestamp {
+        background: rgba(255, 255, 255, 0.1);
+        color: #cccccc;
+    }
+    
+    .iframeContainer {
+        background: #2a2a2a;
+    }
+    
+    .error {
+        background: #2d1b1b;
+        border-left-color: var(--ion-color-danger);
+    }
+    
+    .loadingOverlay {
+        background: rgba(30, 30, 30, 0.9);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+    }
+    
+    .toggle {
+        --background: var(--ion-color-primary, #4f8eff);
+        --background-hover: var(--ion-color-primary-shade, #4285f4);
+    }
+}
+
+/* 动画效果 */
+.controlPanel {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.controlPanel:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.iframe {
+    transition: opacity 0.3s ease;
+}
+
+.loadingOverlay {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 状态指示器动画 */
+.statusIcon {
+    transition: all 0.3s ease;
+}
+
+.statusIcon[color="success"] {
+    animation: pulse 2s infinite;
+}
+
+.statusIcon[color="danger"] {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    75% {
+        transform: translateX(2px);
+    }
+}
+
+/* Toggle 按钮动画 */
+.toggle {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* 控制栏动画 */
+.controlsContent {
+    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* HostClient 状态指示器 */
+.hostClientStatus {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.hostClientStatus:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.statusDot.connected {
+    background: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    animation: connectedPulse 2s infinite;
+}
+
+.statusDot.connecting {
+    background: #f59e0b;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+    animation: connectingPulse 1s infinite;
+}
+
+.statusDot.error {
+    background: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+    animation: errorShake 0.5s ease-in-out;
+}
+
+.statusDot.disconnected {
+    background: #6b7280;
+    box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.2);
+}
+
+.statusText {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.errorText {
+    color: #ef4444;
+    font-size: 14px;
+    margin-left: 4px;
+    animation: errorBlink 1s ease-in-out infinite alternate;
+}
+
+@keyframes errorBlink {
+    0% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+@keyframes connectedPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.4);
+    }
+}
+
+@keyframes connectingPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes errorShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-1px);
+    }
+    75% {
+        transform: translateX(1px);
+    }
+}
+
+/* 暗色主题下的 HostClient 状态指示器 */
+@media (prefers-color-scheme: dark) {
+    .hostClientStatus {
+        background: rgba(30, 30, 30, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ccc;
+    }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .hostClientStatus {
+        bottom: 16px;
+        right: 16px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .statusDot {
+        width: 6px;
+        height: 6px;
+    }
+}

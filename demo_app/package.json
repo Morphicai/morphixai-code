@@ -1,0 +1,50 @@
+{
+  "name": "demo_app",
+  "version": "1.0.0",
+  "description": "Demo MorphixAI application for testing",
+  "type": "module",
+  "main": "app.jsx",
+  "scripts": {
+    "dev": "morphixai dev",
+    "build": "morphixai build",
+    "prompts:check": "morphixai prompts check",
+    "prompts:update": "morphixai prompts update"
+  },
+  "keywords": [
+    "morphixai",
+    "react",
+    "ionic",
+    "mobile",
+    "demo"
+  ],
+  "author": "MorphixAI Developer",
+  "license": "MIT",
+  "peerDependencies": {
+    "@ionic/react": "8.6.2",
+    "ionicons": "7.4.0",
+    "react": "19.0.0"
+  },
+  "devDependencies": {
+    "@morphixai/cli": "workspace:^1.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "qrcode.react": "^4.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "tailwindcss": "^4.1.11"
+  },
+  "morphixai": {
+    "version": "1.0.0",
+    "entry": "app.jsx",
+    "framework": "react-ionic",
+    "features": [
+      "css-modules",
+      "ionicons",
+      "morphixai-components"
+    ],
+    "minAppRunnerVersion": "1.0.0"
+  }
+}
