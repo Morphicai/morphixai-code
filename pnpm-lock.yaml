@@ -15,7 +15,7 @@ importers:
 
   demo_app:
     specifiers:
-      '@morphixai/cli': workspace:^1.0.0
+      '@morphixai/cli': ^1.0.0
       '@tailwindcss/vite': ^4.1.11
       '@vitejs/plugin-react': ^4.0.0
       qrcode.react: ^4.2.0

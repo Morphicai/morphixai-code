@@ -30,14 +30,10 @@ export async function copyTemplate(templateName, targetPath, variables = {}) {
       throw new Error(`Template path not found: ${templatePath}`);
     }
     
-    // 复制模板文件
+    // 复制模板文件（包括 .template 文件）
     await fs.copy(templatePath, targetPath, {
-      filter: (src, dest) => {
-        // 排除一些不需要复制的文件
-        const basename = path.basename(src);
-        // 允许 .template 文件、.gitignore 和 .cursor 目录
-        return !basename.startsWith('.') || basename === '.gitignore' || basename === '.cursor' || basename === '.promptsrc' || basename.endsWith('.template');
-      }
+      overwrite: true,
+      preserveTimestamps: true
     });
     
     // 处理模板变量
@@ -53,7 +49,7 @@ async function processTemplateFiles(projectPath, variables = {}) {
   const templateFiles = await findTemplateFiles(projectPath);
   
   for (const templateFile of templateFiles) {
-    const targetFile = templateFile.replace(/\\.template$/, '');
+    const targetFile = templateFile.replace(/\.template$/, '');
     
     // 读取模板文件内容
     let content = await fs.readFile(templateFile, 'utf-8');

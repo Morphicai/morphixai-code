@@ -69,8 +69,8 @@ jspm_packages/
 
 # Vite
 .vite/
-src/_dev/app-files.json
-src/_dev/app-files.js
+app-files.json
+app-files.js
 
 # Project configuration (contains unique project ID)
-src/_dev/project-config.json
+project-config.json
