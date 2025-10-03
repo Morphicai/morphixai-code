@@ -25,8 +25,7 @@ packages/
             │   ├── appsdk-best-practices.md
             │   ├── code_standards.md
             │   └── icons-usage.md
-            └── docs/                # Claude Code 提示词
-                └── CLAUDE.md
+            └── CLAUDE.md            # Claude Code 提示词（根目录）
 ```
 
 ## 🔧 可用命令
@@ -110,7 +109,7 @@ morphixai prompts install --editor claude
       "version": "1.0.0",
       "description": "Claude Code prompts for MorphixAI development",
       "files": ["CLAUDE.md"],
-      "path": "docs"
+      "path": ""
     }
   }
 }
@@ -178,7 +177,7 @@ morphixai prompts install --editor claude
     "claude": {
       "enabled": true,
       "version": "1.0.0",
-      "path": "docs"
+      "path": ""
     }
   }
 }

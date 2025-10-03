@@ -58,8 +58,10 @@ async function installEditorPromptsFromLocal(projectPath, editorName, config) {
     throw new Error(`Template prompts not found at: ${sourcePath}`);
   }
   
-  // 确保目标目录存在
-  await fs.ensureDir(targetPath);
+  // 确保目标目录存在（如果 path 为空字符串，targetPath 就是项目根目录）
+  if (config.path) {
+    await fs.ensureDir(targetPath);
+  }
   
   // 复制每个文件
   for (const file of config.files) {
@@ -71,7 +73,7 @@ async function installEditorPromptsFromLocal(projectPath, editorName, config) {
       await fs.ensureDir(path.dirname(targetFile));
       await fs.copy(sourceFile, targetFile, { overwrite: true });
     } else {
-      console.warn(`Warning: Prompt file not found in template: ${file}`);
+      console.warn(`⚠️  Warning: Prompt file not found in template: ${file}`);
     }
   }
 }

@@ -21,7 +21,7 @@
       "version": "1.0.0",
       "description": "Claude Code prompts for MorphixAI development",
       "files": ["CLAUDE.md"],
-      "path": "docs"
+      "path": ""
     }
   }
 }
