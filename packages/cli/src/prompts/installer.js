@@ -24,11 +24,25 @@ export async function installPrompts(projectPath, options = {}) {
   const { editor = 'all' } = options;
   
   const registry = await fetchPromptsRegistry();
-  const editors = editor === 'all' ? Object.keys(registry.prompts) : [editor];
   
+  // 始终安装的核心文件
+  const alwaysInstall = ['docs', 'readme'];
   const installedEditors = [];
   
+  for (const key of alwaysInstall) {
+    const config = registry.prompts[key];
+    if (config) {
+      await installEditorPromptsFromLocal(projectPath, key, config);
+      installedEditors.push(key);
+    }
+  }
+  
+  // 安装指定编辑器的提示词
+  const editors = editor === 'all' ? ['cursor', 'claude'] : [editor];
+  
   for (const editorName of editors) {
+    if (alwaysInstall.includes(editorName)) continue; // 已安装
+    
     const config = registry.prompts[editorName];
     if (!config) {
       console.warn(`Unknown editor: ${editorName}`);

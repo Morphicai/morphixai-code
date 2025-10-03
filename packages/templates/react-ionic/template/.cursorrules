@@ -1,0 +1,27 @@
+# MorphixAI 应用开发规则 - Cursor Editor
+
+## 📖 重要提示
+
+**在开始开发前，请务必完整阅读：**
+
+👉 **[@DEVELOPMENT_GUIDE.md](docs/DEVELOPMENT_GUIDE.md)**
+
+该文档包含完整的开发规范、技术栈说明、SDK 使用指南、UI/UX 规范和最佳实践。
+
+## 核心约束
+
+- ✅ **允许**：在应用根目录及其子目录下创建、修改任何文件
+- ❌ **严禁**：修改项目配置文件（package.json, vite.config.js 等）
+- ❌ **严禁**：修改 `docs/` 和 `public/` 目录
+
+## 快速要点
+
+- **入口文件**：`app.jsx`
+- **样式**：必须使用 CSS Modules（`.module.css`）
+- **路由**：React Router 5.3.4（使用 Switch/useHistory）
+- **错误处理**：所有异步操作必须使用 try-catch + reportError
+
+---
+
+**再次提醒：完整开发规范请阅读 [@DEVELOPMENT_GUIDE.md](docs/DEVELOPMENT_GUIDE.md)**
+

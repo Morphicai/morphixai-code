@@ -39,7 +39,7 @@ export async function devCommand(options) {
     
     // 创建 Vite 服务器配置（运行 console 项目）
     const consoleSrcPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../console');
-    const userAppFilesPath = path.join(projectPath, 'src/_dev/app-files.js');
+    const userAppFilesPath = path.join(projectPath, '_dev/app-files.js');
     const userProjectConfigPath = path.join(projectPath, 'project-config.json');
     
     const viteConfig = {

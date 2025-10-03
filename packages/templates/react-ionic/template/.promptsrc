@@ -1,16 +1,26 @@
 {
-  "version": "1.0.0",
-  "source": "https://app-shell.focusbe.com/api/prompts",
+  "version": "2.0.0",
+  "source": "local",
   "lastUpdated": "2025-01-01T00:00:00Z",
   "editors": {
     "cursor": {
       "enabled": true,
-      "version": "1.0.0",
-      "path": ".cursor/rules"
+      "version": "2.0.0",
+      "path": ""
     },
     "claude": {
       "enabled": true,
-      "version": "1.0.0",
+      "version": "2.0.0",
+      "path": ""
+    },
+    "readme": {
+      "enabled": true,
+      "version": "2.0.0",
+      "path": ""
+    },
+    "docs": {
+      "enabled": true,
+      "version": "2.0.0",
       "path": "docs"
     }
   }
