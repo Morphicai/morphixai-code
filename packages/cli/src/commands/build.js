@@ -49,10 +49,10 @@ export async function buildCommand(options) {
       },
       resolve: {
         alias: {
-          '@': path.join(projectPath, 'src/app'),
-          '@components': path.join(projectPath, 'src/app/components'),
-          '@styles': path.join(projectPath, 'src/app/styles'),
-          '@utils': path.join(projectPath, 'src/app/utils'),
+          '@': path.join(projectPath, 'src'),
+          '@components': path.join(projectPath, 'src/components'),
+          '@styles': path.join(projectPath, 'src/styles'),
+          '@utils': path.join(projectPath, 'src/utils'),
         },
       },
       plugins: [

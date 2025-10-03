@@ -1,5 +1,6 @@
 {
   "name": "{{PROJECT_NAME}}",
+  "private": true,
   "version": "1.0.0",
   "description": "A MorphixAI application",
   "type": "module",

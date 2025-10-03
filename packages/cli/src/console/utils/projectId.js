@@ -4,12 +4,12 @@
  */
 export async function extractProjectId() {
   try {
-    // Dynamically import JSON file
-    const configModule = await import('../project-config.json');
+    // Dynamically import JSON file from user project
+    const configModule = await import('~user/project-config.json');
     const config = configModule.default;
     
-    if (config && config.projectId) {
-      return config.projectId;
+    if (config && config.id) {
+      return config.id;
     }
     
     return null;

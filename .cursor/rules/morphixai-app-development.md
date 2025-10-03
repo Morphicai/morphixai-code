@@ -13,7 +13,7 @@ alwaysApply: true
 ## 📋 项目结构
 
 ### 应用入口
-- 必须使用 `src/app/app.jsx` 作为应用入口文件
+- 必须使用 `src/app.jsx` 作为应用入口文件
 - 导出默认函数组件
 
 ### 标准结构

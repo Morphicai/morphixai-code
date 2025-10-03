@@ -52,6 +52,19 @@ export default function App() {
         return `${baseUrl}/app-runner/${projectInfo.id}?t=${Date.now()}`;
     }, [projectInfo.id]);
 
+    // 创建单一的 AppShellIframe 实例，避免重复创建（必须在 early return 之前）
+    const appShellIframe = useMemo(() => (
+        <AppShellIframe
+            ref={appShellRef}
+            appId={projectInfo.id}
+            isDev={true}
+            onHostClientReady={handleHostClientReady}
+            onAppLoad={handleAppLoad}
+            onAppError={handleAppError}
+            onAppUpdate={handleAppUpdate}
+        />
+    ), [projectInfo.id, handleHostClientReady]);
+
     // If there's a warning, show guidance UI
     if (projectInfo.hasWarning) {
         return (
@@ -87,19 +100,6 @@ export default function App() {
             </IonPage>
         );
     }
-
-    // 创建单一的 AppShellIframe 实例，避免重复创建
-    const appShellIframe = useMemo(() => (
-        <AppShellIframe
-            ref={appShellRef}
-            appId={projectInfo.id}
-            isDev={true}
-            onHostClientReady={handleHostClientReady}
-            onAppLoad={handleAppLoad}
-            onAppError={handleAppError}
-            onAppUpdate={handleAppUpdate}
-        />
-    ), [projectInfo.id, handleHostClientReady]);
 
     return (
         <IonPage>

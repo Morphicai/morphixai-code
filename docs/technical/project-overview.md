@@ -125,7 +125,7 @@ sequenceDiagram
 - **应用文件快照（app-files）**：将 `src/app` 的文件树打包为对象，供宿主在开发态直接拉取执行。
 
 ### 当前示例应用
-- `src/app/app.jsx` + `components/Welcome.jsx` + 样式：提供一个演示页，展示整体开发-预览-通信闭环。
+- `src/app.jsx` + `components/Welcome.jsx` + 样式：提供一个演示页，展示整体开发-预览-通信闭环。
 
 ### 后续可扩展方向
 - 扩展 `HostClient` 模块能力（如设备 API、文件存储、通知等）。

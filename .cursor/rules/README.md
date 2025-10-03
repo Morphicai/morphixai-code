@@ -89,7 +89,7 @@ src/app/
 
 ### 3. 标准应用入口模板
 ```jsx
-// src/app/app.jsx
+// src/app.jsx
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import { PageHeader } from '@morphixai/components';

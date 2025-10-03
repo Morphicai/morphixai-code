@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { IonLoading, IonToast } from '@ionic/react';
 import styles from '../styles/AppShellIframe.module.css';
-import initialAppFiles from '../app-files.js';
+import initialAppFiles from '~user/app-files.js';
 import { APP_SHELL_CONFIG } from '../config/appShellConfig.js';
 import { createHostClientAsync } from '../lib/hostClient.ts';
 
@@ -166,7 +166,7 @@ const AppShellIframe = forwardRef(function AppShellIframe(
     useEffect(() => {
         let dispose;
         if (import.meta.hot) {
-            dispose = import.meta.hot.accept('../app-files.js', (newModule) => {
+            dispose = import.meta.hot.accept('~user/app-files.js', (newModule) => {
                 console.log('newModule', newModule);
                 setAppFiles(newModule.default);
                 sendFileUpdateMessage();

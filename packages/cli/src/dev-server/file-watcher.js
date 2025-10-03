@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 import { watchAppFiles } from '../utils/app-files.js';
 
-export function startFileWatcher(projectPath) {
-  console.log(chalk.gray('👀 Watching src/app/ for changes...'));
+export async function startFileWatcher(projectPath) {
+  console.log(chalk.gray('👀 Watching src/ for changes...'));
   
-  const watcher = watchAppFiles(projectPath, () => {
+  const watcher = await watchAppFiles(projectPath, () => {
     console.log(chalk.green('📝 app-files.js updated'));
   });
   

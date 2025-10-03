@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { IonToast } from '@ionic/react';
 import { QRCodeCanvas } from 'qrcode.react';
-import initialAppFiles from '../app-files.js';
+import initialAppFiles from '~user/app-files.js';
 import AppIcon, { AVAILABLE_ICONS, THEME_COLORS } from './AppIcon.jsx';
 import { usePreview } from '../utils/preview.js';
 import { computeReadOnly } from '../utils/ownership.js';
@@ -70,7 +70,7 @@ export default function DevControlPanel({
     useEffect(() => {
         let dispose;
         if (import.meta?.hot) {
-            dispose = import.meta.hot.accept('../app-files.js', (newModule) => {
+            dispose = import.meta.hot.accept('~user/app-files.js', (newModule) => {
                 setAppFiles(newModule?.default ?? initialAppFiles);
             });
         }

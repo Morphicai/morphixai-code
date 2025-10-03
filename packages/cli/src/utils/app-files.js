@@ -2,11 +2,11 @@ import fs from 'fs-extra';
 import path from 'path';
 
 export async function generateAppFiles(projectPath) {
-  const appDir = path.join(projectPath, 'src/app');
+  const appDir = path.join(projectPath, 'src');
   const outputFile = path.join(projectPath, 'src/_dev/app-files.js');
   
   if (!await fs.pathExists(appDir)) {
-    throw new Error('src/app directory not found');
+    throw new Error('src directory not found');
   }
   
   // 确保输出目录存在
@@ -32,6 +32,11 @@ async function readDirectoryRecursive(dir, baseDir) {
     const fullPath = path.join(dir, item.name);
     const relativePath = path.relative(baseDir, fullPath);
     
+    // 跳过 _dev 目录和隐藏文件
+    if (item.name.startsWith('.') || item.name.startsWith('_')) {
+      continue;
+    }
+    
     if (item.isDirectory()) {
       // 递归读取子目录
       const subFiles = await readDirectoryRecursive(fullPath, baseDir);
@@ -52,14 +57,18 @@ async function readDirectoryRecursive(dir, baseDir) {
 
 export async function watchAppFiles(projectPath, callback) {
   const chokidar = await import('chokidar');
-  const appDir = path.join(projectPath, 'src/app');
+  const appDir = path.join(projectPath, 'src');
   
   if (!await fs.pathExists(appDir)) {
-    throw new Error('src/app directory not found');
+    throw new Error('src directory not found');
   }
   
   const watcher = chokidar.default.watch(appDir, {
-    ignored: /(^|[\\/\\\\])\\../, // 忽略隐藏文件
+    ignored: [
+      /(^|[\\/\\\\])\\./, // 忽略隐藏文件
+      '**/node_modules/**',
+      '**/_dev/**' // 忽略 _dev 目录
+    ],
     persistent: true
   });
   

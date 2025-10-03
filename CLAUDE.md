@@ -81,7 +81,7 @@ export default function App() {
 ## 🛠 开发规范
 
 ### 1. 入口文件要求
-- 必须使用 `src/app/app.jsx` 作为应用入口文件
+- 必须使用 `src/app.jsx` 作为应用入口文件
 - 导出默认函数组件
 
 ### 2. 标准文件结构
@@ -1322,7 +1322,7 @@ const result = await withRetry(
 ## 📝 完整示例应用
 
 ```jsx
-// src/app/app.jsx - 完整的应用示例
+// src/app.jsx - 完整的应用示例
 import React, { useState, useEffect } from 'react';
 import { IonPage, IonContent, IonButton, IonItem, IonInput, IonList, IonCheckbox, IonIcon, IonFab, IonFabButton } from '@ionic/react';
 import { PageHeader } from '@morphixai/components';

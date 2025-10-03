@@ -4,8 +4,6 @@ import chalk from 'chalk';
 import { createServer } from 'vite';
 import { fileURLToPath } from 'url';
 import { startFileWatcher } from '../dev-server/file-watcher.js';
-import { createConsoleMiddleware } from '../dev-server/console-middleware.js';
-import { buildConsole } from '../console/build.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,21 +28,31 @@ export async function devCommand(options) {
     
     console.log(chalk.blue('Starting MorphixAI development server...'));
     
-    // 构建控制台（如果需要）
-    console.log(chalk.gray('Building embedded console...'));
-    const consoleDist = await buildConsole();
+    // 生成初始 app-files.js
+    console.log(chalk.gray('Generating app-files.js...'));
+    const { generateAppFiles } = await import('../utils/app-files.js');
+    await generateAppFiles(projectPath);
     
     // 启动文件监控
     console.log(chalk.gray('Starting file watcher...'));
-    const watcher = startFileWatcher(projectPath);
+    const watcher = await startFileWatcher(projectPath);
     
-    // 创建 Vite 服务器配置
+    // 创建 Vite 服务器配置（运行 console 项目）
+    const consoleSrcPath = path.join(path.dirname(fileURLToPath(import.meta.url)), '../console');
+    const userAppFilesPath = path.join(projectPath, 'src/_dev/app-files.js');
+    const userProjectConfigPath = path.join(projectPath, 'project-config.json');
+    
     const viteConfig = {
-      root: projectPath,
+      configFile: false, // 禁用自动加载 vite.config.js，避免 plugin 重复
+      root: consoleSrcPath,
       server: {
         port: parseInt(port),
-        open: `http://localhost:${port}${consolePath}`,
-        host: 'localhost'
+        open: false, // 不自动打开，稍后手动打开 console
+        host: 'localhost',
+        fs: {
+          // 允许访问用户项目文件
+          allow: [consoleSrcPath, projectPath]
+        }
       },
       build: {
         outDir: 'dist',
@@ -57,10 +65,14 @@ export async function devCommand(options) {
       },
       resolve: {
         alias: {
-          '@': path.join(projectPath, 'src/app'),
-          '@components': path.join(projectPath, 'src/app/components'),
-          '@styles': path.join(projectPath, 'src/app/styles'),
-          '@utils': path.join(projectPath, 'src/app/utils'),
+          // console 项目的别名
+          '@console': consoleSrcPath,
+          '@console-components': path.join(consoleSrcPath, 'components'),
+          '@console-styles': path.join(consoleSrcPath, 'styles'),
+          '@console-utils': path.join(consoleSrcPath, 'utils'),
+          // 用户项目的 app-files.js 别名
+          '~user/app-files.js': userAppFilesPath,
+          '~user/project-config.json': userProjectConfigPath,
         },
       },
       plugins: [
@@ -73,23 +85,12 @@ export async function devCommand(options) {
     
     // 创建并启动服务器
     const server = await createServer(viteConfig);
-    
-    // 添加控制台中间件
-    server.middlewares.use(
-      createConsoleMiddleware({
-        consoleDistPath: consoleDist,
-        consolePath,
-        userAppUrl: `http://localhost:${port}`
-      })
-    );
-    
     await server.listen();
     
     console.log();
     console.log(chalk.green('🚀 Development server started!'));
     console.log();
-    console.log(chalk.cyan(`  User App:      http://localhost:${port}`));
-    console.log(chalk.cyan(`  Dev Console:   http://localhost:${port}${consolePath}`));
+    console.log(chalk.cyan(`  Dev Console:   http://localhost:${port}`));
     console.log();
     console.log(chalk.gray('Press Ctrl+C to stop the server'));
     
@@ -103,7 +104,7 @@ export async function devCommand(options) {
     
   } catch (error) {
     console.error(chalk.red('Error starting development server:'), error.message);
-    if (debug) {
+    if (options.debug) {
       console.error(error.stack);
     }
     process.exit(1);

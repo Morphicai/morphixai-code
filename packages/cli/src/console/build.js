@@ -28,7 +28,10 @@ export async function buildConsole() {
       configFile: path.join(consoleSrcPath, 'vite.config.js'),
       build: {
         outDir: 'dist',
-        emptyOutDir: true
+        emptyOutDir: true,
+        rollupOptions: {
+          input: path.join(consoleSrcPath, 'index.html')
+        }
       }
     });
     

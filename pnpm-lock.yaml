@@ -13,7 +13,7 @@ importers:
       '@changesets/cli': 2.29.7
       turbo: 1.13.4
 
-  demo_app:
+  examples/demo-app:
     specifiers:
       '@morphixai/cli': ^1.0.0
       '@tailwindcss/vite': ^4.1.11
@@ -30,7 +30,7 @@ importers:
       react-dom: 19.0.0_react@19.0.0
       tailwindcss: 4.1.14
     devDependencies:
-      '@morphixai/cli': link:../packages/cli
+      '@morphixai/cli': link:../../packages/cli
       '@vitejs/plugin-react': 4.7.0_vite@5.4.20
       vite: 5.4.20
 

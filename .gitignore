@@ -74,3 +74,6 @@ app-files.js
 
 # Project configuration (contains unique project ID)
 project-config.json
+
+# Example/demo applications
+examples/
