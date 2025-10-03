@@ -1,6 +1,6 @@
 ---
 description: 文档上下文规则 - 利用 docs 目录中的文档作为开发上下文
-globs: ["src/**/*", "!src/_dev/**", "docs/**/*"]
+globs: ["src/app/**/*", "docs/**/*"]
 alwaysApply: true
 ---
 

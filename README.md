@@ -31,55 +31,65 @@
 
 > 🎯 Designed for zero-experience users — just follow the steps to succeed!
 
-### Step 1: Environment
-- Node.js: Use LTS versions (18 or 20 recommended). Check with:
+### Step 1: Environment Requirements
+- **Node.js**: Use LTS versions (18 or 20 recommended). Check with:
   ```bash
   node --version
   ```
-- Git (optional but recommended):
-  ```bash
-  git --version
-  ```
-- Supported OS: macOS, Windows, Linux
+- **Supported OS**: macOS, Windows, Linux
 
-If Node.js is missing, download from the [official site](https://nodejs.org/). For Git, see [git-scm.com](https://git-scm.com/).
+If Node.js is missing, download from the [official site](https://nodejs.org/).
 
-### Step 2: Clone
+### Step 2: Install MorphixAI CLI
 ```bash
-git clone https://github.com/Morphicai/morphixai-code.git
-cd morphixai-code
+npm install -g @morphixai/cli
 ```
 
-### Step 3: Install Dependencies
+### Step 3: Create a New Project
+```bash
+morphixai create my-app
+cd my-app
+```
+
+### Step 4: Install Dependencies
 ```bash
 npm install
 ```
 
-### Step 4: Start Development
-1. Open the project with your editor
-2. Start the dev server
-   ```bash
-   npm run dev
-   ```
-3. Your browser should open automatically. If not, visit `http://localhost:8812`
-4. Start coding in `src/app/`
+### Step 5: Start Development
+```bash
+npm run dev
+```
 
-Tip: For the best AI-assisted DX, try [Cursor](https://cursor.sh).
+The development console will open at `http://localhost:8812`. Start coding in the `src/` directory!
+
+**💡 Tip**: For the best AI-assisted development experience, use [Cursor](https://cursor.sh) editor.
 
 ## 🧰 Troubleshooting
-- **Port already in use (8812)**: Close the process using the port, or change `server.port` in `vite.config.js`.
-- **Install failures (network/permissions)**: Clear cache `npm cache clean --force`, then retry `npm install`. On macOS/Linux, try `sudo npm install` only if necessary.
-- **Browser didn’t open**: Access `http://localhost:8812` manually; ensure `server.open` is true in `vite.config.js`.
-- **Mermaid diagram not rendering on some viewers**: View on GitHub or a Markdown tool that supports Mermaid.
+- **Port already in use (8812)**: Use a different port with `morphixai dev --port 3000`
+- **Install failures (network/permissions)**: Clear cache with `npm cache clean --force`, then retry. Try `sudo npm install -g @morphixai/cli` if you get permission errors.
+- **Command not found**: Ensure global npm packages directory is in your PATH, or use `npx @morphixai/cli create my-app`
+- **Browser didn't open**: Manually visit `http://localhost:8812` (or your custom port)
 
 ## 🗂 Project Structure
 ```
-src/
-  app/                # Your mini-app source (start here)
-  _dev/               # Dev shell, utils, examples, config
-public/               # Static assets
-scripts/              # Dev helpers (watch, restore, id generation)
-vite.config.js        # Dev server config (port 8812 by default)
+my-app/
+├── src/                    # Your mini-app source code
+│   ├── app.jsx            # App entry point
+│   ├── components/        # React components
+│   └── styles/            # CSS modules
+├── docs/                  # Documentation (CLAUDE.md, DEVELOPER.md)
+├── public/                # Static assets
+├── package.json           # Dependencies and scripts
+└── project-config.json    # Project configuration and ID
+```
+
+### Available Commands
+```bash
+npm run dev              # Start development server with live reload
+npm run build            # Build for production
+npm run prompts:check    # Check AI prompts version
+npm run prompts:update   # Update AI prompts to latest
 ```
 
 ## 🤖 What is MorphixAI?
@@ -220,7 +230,41 @@ AI: I'll add it:
 - [ ] GitHub Actions support
 
 ## 🤝 Contributing
-Contributions are welcome! Please open an issue or pull request. For local development guidance, see `DEVELOPER.md`.
+
+Contributions are welcome! This project uses a monorepo structure:
+
+```
+morphixai-code/
+├── packages/
+│   ├── cli/              # @morphixai/cli package
+│   └── templates/        # Project templates
+├── examples/             # Example applications
+└── docs/                # Documentation
+```
+
+### For Contributors
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Morphicai/morphixai-code.git
+   cd morphixai-code
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Make your changes in the appropriate package
+
+4. Test locally:
+   ```bash
+   cd examples/demo-app
+   npm run dev
+   ```
+
+5. Submit a pull request
+
+For detailed development guidance, see `DEVELOPER.md`.
 
 ## 📄 License
 This project is licensed under the MIT License.

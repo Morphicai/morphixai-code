@@ -27,7 +27,7 @@
     "author": "MorphixAI",
     "license": "MIT",
     "devDependencies": {
-        "@changesets/cli": "^2.27.0",
+        "@changesets/cli": "^2.29.7",
         "turbo": "^1.10.0"
     },
     "engines": {

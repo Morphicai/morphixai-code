@@ -3,12 +3,12 @@
 ## 🚨 核心开发约束
 
 ### ⛔ 硬性限制
-**所有开发活动必须严格限制在 `src/app/` 目录内！**
+**所有开发活动必须严格限制在 `src/` 目录内！**
 
-- ✅ **允许**：在 `src/app/` 及其子目录下创建、修改任何文件
-- ❌ **严禁**：修改 `src/app/` 目录外的任何文件
+- ✅ **允许**：在 `src/` 及其子目录下创建、修改任何文件（除 `src/_dev/` 外）
+- ❌ **严禁**：修改 `src/` 目录外的任何文件
 - ❌ **严禁**：修改项目配置文件（package.json, vite.config.js 等）
-- ❌ **严禁**：修改 `src/_dev/` 目录内容
+- ❌ **严禁**：修改 `src/_dev/` 目录内容（这是 CLI 的内部目录）
 
 ## 🎯 技术栈规范
 
@@ -86,7 +86,7 @@ export default function App() {
 
 ### 2. 标准文件结构
 ```
-src/app/
+src/
 ├── app.jsx              # 应用入口文件（必需）
 ├── components/          # 组件目录
 │   ├── common/         # 通用组件
@@ -100,7 +100,8 @@ src/app/
 ├── utils/              # 工具函数 ✅ 可创建
 ├── constants/          # 常量定义 ✅ 可创建
 ├── types/              # TypeScript类型 ✅ 可创建
-└── assets/             # 应用资源 ✅ 可创建
+├── assets/             # 应用资源 ✅ 可创建
+└── _dev/               # CLI 内部目录 ❌ 禁止修改
 ```
 
 ### 3. 文件命名规范
@@ -1301,7 +1302,7 @@ const result = await withRetry(
 1. **禁止全局错误边界** - 请不要添加全局的错误边界
 2. **禁止演示代码** - 生成生产可用的代码，不要添加开发或演示代码
 3. **禁止修改配置** - 不要修改 package.json, vite.config.js 等配置文件
-4. **禁止在 src/app/ 外操作** - 严格限制在允许的开发区域内
+4. **禁止在 src/ 外操作** - 严格限制在允许的开发区域内（src/_dev/ 除外）
 5. **禁止使用过时的路由语法** - 必须使用 React Router v5.3.4 语法
 6. **禁止跳过错误处理** - 所有 AppSdk 调用必须使用 try-catch 和 reportError
 
@@ -1322,7 +1323,7 @@ const result = await withRetry(
 ## 📝 完整示例应用
 
 ```jsx
-// src/app.jsx - 完整的应用示例
+// src/app.jsx - 完整的应用示例（用户项目的入口文件）
 import React, { useState, useEffect } from 'react';
 import { IonPage, IonContent, IonButton, IonItem, IonInput, IonList, IonCheckbox, IonIcon, IonFab, IonFabButton } from '@ionic/react';
 import { PageHeader } from '@morphixai/components';

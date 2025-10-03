@@ -43,42 +43,56 @@
 
 如未安装 Node.js，请访问[Node.js 官方网站](https://nodejs.org/)。Git 可参考 [git-scm.com](https://git-scm.com/)。
 
-### 第二步：下载项目
+### 第二步：安装 MorphixAI CLI
 ```bash
-git clone https://github.com/Morphicai/morphixai-code.git
-cd morphixai-code
+npm install -g @morphixai/cli
 ```
 
-### 第三步：安装依赖
+### 第三步：创建新项目
+```bash
+morphixai create my-app
+cd my-app
+```
+
+### 第四步：安装依赖
 ```bash
 npm install
 ```
 
-### 第四步：启动开发
-1. 用你喜欢的编辑器打开项目
-2. 启动开发服务器
-   ```bash
-   npm run dev
-   ```
-3. 浏览器会自动打开；如未打开，访问 `http://localhost:8812`
-4. 从 `src/app/` 开始编写你的代码
+### 第五步：开始开发
+```bash
+npm run dev
+```
 
-提示：推荐使用 [Cursor](https://cursor.sh) 获得更好的 AI 编程体验。
+开发控制台将在 `http://localhost:8812` 打开。在 `src/` 目录下开始编码！
+
+**💡 提示**：推荐使用 [Cursor](https://cursor.sh) 获得更好的 AI 编程体验。
 
 ## 🧰 故障排查
-- **端口被占用（8812）**：关闭占用该端口的进程，或在 `vite.config.js` 修改 `server.port`。
-- **安装失败（网络/权限）**：执行 `npm cache clean --force` 后重试 `npm install`。macOS/Linux 必要时使用 `sudo`。
-- **浏览器未自动打开**：手动访问 `http://localhost:8812`；或确保 `vite.config.js` 中 `server.open` 为 `true`。
-- **Mermaid 图未渲染**：请在 GitHub 或支持 Mermaid 的 Markdown 工具中查看。
+- **端口被占用（8812）**：使用其他端口 `morphixai dev --port 3000`
+- **安装失败（网络/权限）**：执行 `npm cache clean --force` 后重试。如遇权限错误，尝试 `sudo npm install -g @morphixai/cli`
+- **命令未找到**：确保全局 npm 包目录在 PATH 中，或使用 `npx @morphixai/cli create my-app`
+- **浏览器未自动打开**：手动访问 `http://localhost:8812`（或您的自定义端口）
 
 ## 🗂 项目结构
 ```
-src/
-  app/                # 你的应用代码（建议从这里开始）
-  _dev/               # 开发壳、工具、示例与配置
-public/               # 静态资源
-scripts/              # 开发辅助脚本（watch、恢复、ID 生成）
-vite.config.js        # 开发服务器配置（默认端口 8812）
+my-app/
+├── src/                    # 你的小程序源码
+│   ├── app.jsx            # 应用入口
+│   ├── components/        # React 组件
+│   └── styles/            # CSS 模块
+├── docs/                  # 文档（CLAUDE.md、DEVELOPER.md）
+├── public/                # 静态资源
+├── package.json           # 依赖和脚本
+└── project-config.json    # 项目配置和 ID
+```
+
+### 可用命令
+```bash
+npm run dev              # 启动开发服务器（支持热重载）
+npm run build            # 生产环境构建
+npm run prompts:check    # 检查 AI 提示词版本
+npm run prompts:update   # 更新 AI 提示词到最新版本
 ```
 
 ## 🤖 什么是 MorphixAI？

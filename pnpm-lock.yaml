@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@changesets/cli': ^2.27.0
+      '@changesets/cli': ^2.29.7
       '@morphixai/cli': workspace:^1.0.0
       turbo: ^1.10.0
     dependencies:

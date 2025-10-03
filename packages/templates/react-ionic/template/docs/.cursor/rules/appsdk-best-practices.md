@@ -1,6 +1,6 @@
 ---
 description: MorphixAI AppSdk 最佳实践和常见模式
-globs: ["src/**/*.jsx", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "!src/_dev/**"]
+globs: ["src/app/**/*.jsx", "src/app/**/*.js", "src/app/**/*.ts", "src/app/**/*.tsx"]
 alwaysApply: true
 ---
 
