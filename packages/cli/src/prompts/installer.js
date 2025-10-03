@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { fetchPromptsRegistry, readLocalPromptsConfig, writeLocalPromptsConfig, checkPromptsVersion } from './fetcher.js';
+import { fetchPromptsRegistry, fetchRemotePrompt, readLocalPromptsConfig, writeLocalPromptsConfig, checkPromptsVersion } from './fetcher.js';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,7 +18,7 @@ function getTemplatePromptsPath() {
 }
 
 /**
- * 安装提示词（从本地模板复制）
+ * 安装提示词（支持远程和本地）
  */
 export async function installPrompts(projectPath, options = {}) {
   const { editor = 'all' } = options;
@@ -32,8 +32,20 @@ export async function installPrompts(projectPath, options = {}) {
   for (const key of alwaysInstall) {
     const config = registry.prompts[key];
     if (config) {
-      await installEditorPromptsFromLocal(projectPath, key, config);
-      installedEditors.push(key);
+      // 如果有远程 URL，尝试从远程安装，失败则回退到本地
+      if (config.remoteUrl) {
+        try {
+          await installEditorPromptsFromRemote(projectPath, key, config);
+          installedEditors.push(key);
+        } catch (error) {
+          console.warn(`⚠️  Remote fetch failed for ${key}, falling back to local: ${error.message}`);
+          await installEditorPromptsFromLocal(projectPath, key, config);
+          installedEditors.push(key);
+        }
+      } else {
+        await installEditorPromptsFromLocal(projectPath, key, config);
+        installedEditors.push(key);
+      }
     }
   }
   
@@ -57,6 +69,30 @@ export async function installPrompts(projectPath, options = {}) {
   await updateLocalPromptsConfig(projectPath, registry, installedEditors);
   
   return { installed: installedEditors };
+}
+
+/**
+ * 从远程 API 安装提示词
+ */
+async function installEditorPromptsFromRemote(projectPath, editorName, config) {
+  const targetPath = path.join(projectPath, config.path);
+  
+  // 确保目标目录存在
+  if (config.path) {
+    await fs.ensureDir(targetPath);
+  }
+  
+  // 从远程获取内容
+  const content = await fetchRemotePrompt(config.remoteUrl);
+  
+  // 保存每个文件
+  for (const file of config.files) {
+    const targetFile = path.join(targetPath, file);
+    
+    // 确保目标文件的目录存在
+    await fs.ensureDir(path.dirname(targetFile));
+    await fs.writeFile(targetFile, content, 'utf-8');
+  }
 }
 
 /**

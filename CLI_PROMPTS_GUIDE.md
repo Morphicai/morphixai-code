@@ -15,7 +15,8 @@ MorphixAI CLI 提供了完整的提示词管理功能，用于在项目中安装
 
 ### 核心特点
 
-✅ **本地化**：所有提示词从本地模板复制，无需网络  
+✅ **远程支持**：完整文档从远程 API 获取，确保最新  
+✅ **本地回退**：远程失败时自动回退到本地，确保稳定  
 ✅ **版本管理**：自动检测和更新提示词版本  
 ✅ **多编辑器支持**：Cursor、Claude Code、README、完整文档  
 ✅ **自动安装**：创建项目时自动安装所有提示词  
@@ -23,7 +24,7 @@ MorphixAI CLI 提供了完整的提示词管理功能，用于在项目中安装
 
 ## 提示词类型
 
-MorphixAI 目前支持 4 种类型的提示词（v2.0.0）：
+MorphixAI 目前支持 4 种类型的提示词（v1.0.0）：
 
 ### 1. Cursor 提示词
 
@@ -81,10 +82,11 @@ MorphixAI 目前支持 4 种类型的提示词（v2.0.0）：
 ```json
 {
   "docs": {
-    "version": "2.0.0",
+    "version": "1.0.0",
     "description": "Complete development guide (shared by all editors)",
     "files": ["DEVELOPMENT_GUIDE.md"],
-    "path": "docs"
+    "path": "docs",
+    "remoteUrl": "https://api.baibian.app/prompts/public?name=mophixai_code_prompt&version=1"
   }
 }
 ```
@@ -92,6 +94,8 @@ MorphixAI 目前支持 4 种类型的提示词（v2.0.0）：
 **文件：** `docs/DEVELOPMENT_GUIDE.md` (1330 行)  
 **位置：** `docs/` 目录  
 **作用：** 完整的开发规范（所有编辑器共享）  
+**来源：** 🌐 **远程 API** (失败时回退到本地)  
+**远程地址：** `https://api.baibian.app/prompts/public?name=mophixai_code_prompt&version=1`
 
 ## CLI 命令
 
@@ -112,16 +116,16 @@ morphixai prompts check
 
 📋 Prompts Status (Local):
 
-✅ cursor     v2.0.0 (latest)
-✅ claude     v2.0.0 (latest)
-✅ readme     v2.0.0 (latest)
-✅ docs       v2.0.0 (latest)
+✅ cursor     v1.0.0 (latest)
+✅ claude     v1.0.0 (latest)
+✅ readme     v1.0.0 (latest)
+✅ docs       v1.0.0 (latest, remote)
 ```
 
 或者如果有更新：
 ```
-⚠️  cursor     v1.0.0 → v2.0.0 available
-⚠️  claude     v1.0.0 → v2.0.0 available
+⚠️  cursor     v0.9.0 → v1.0.0 available
+⚠️  claude     v0.9.0 → v1.0.0 available
 
 💡 Run morphixai prompts update to update
 ```
@@ -195,29 +199,30 @@ morphixai prompts install --editor=claude
 **内容示例：**
 ```json
 {
-  "version": "2.0.0",
-  "source": "local",
+  "version": "1.0.0",
+  "source": "mixed",
   "lastUpdated": "2025-01-01T00:00:00Z",
   "editors": {
     "cursor": {
       "enabled": true,
-      "version": "2.0.0",
+      "version": "1.0.0",
       "path": ""
     },
     "claude": {
       "enabled": true,
-      "version": "2.0.0",
+      "version": "1.0.0",
       "path": ""
     },
     "readme": {
       "enabled": true,
-      "version": "2.0.0",
+      "version": "1.0.0",
       "path": ""
     },
     "docs": {
       "enabled": true,
-      "version": "2.0.0",
-      "path": "docs"
+      "version": "1.0.0",
+      "path": "docs",
+      "source": "remote"
     }
   }
 }
@@ -228,7 +233,7 @@ morphixai prompts install --editor=claude
 | 字段 | 类型 | 说明 |
 |-----|------|------|
 | `version` | string | 配置文件版本 |
-| `source` | string | 提示词来源（`local` 表示本地） |
+| `source` | string | 提示词来源（`local` 本地 / `remote` 远程 / `mixed` 混合） |
 | `lastUpdated` | string | 最后更新时间 |
 | `editors` | object | 编辑器配置列表 |
 | `editors.*.enabled` | boolean | 是否启用该编辑器 |
@@ -244,6 +249,7 @@ morphixai prompts install --editor=claude
 **作用：**
 - 定义所有可用的提示词
 - 指定每个提示词的版本、文件和路径
+- 配置远程 URL（如果支持远程获取）
 - 作为版本检查的参考
 
 ## 工作原理

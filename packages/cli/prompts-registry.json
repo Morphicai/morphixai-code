@@ -1,9 +1,9 @@
 {
-  "version": "2.0.0",
-  "description": "MorphixAI AI Prompts Registry - All prompts are stored locally in templates",
+  "version": "1.0.0",
+  "description": "MorphixAI AI Prompts Registry - Supports remote and local prompts",
   "prompts": {
     "cursor": {
-      "version": "2.0.0",
+      "version": "1.0.0",
       "description": "Cursor AI prompts for MorphixAI development",
       "files": [
         ".cursorrules"
@@ -11,22 +11,23 @@
       "path": ""
     },
     "claude": {
-      "version": "2.0.0",
+      "version": "1.0.0",
       "description": "Claude Code prompts for MorphixAI development",
       "files": ["CLAUDE.md"],
       "path": ""
     },
     "readme": {
-      "version": "2.0.0",
+      "version": "1.0.0",
       "description": "Project README with development guide",
       "files": ["README.md"],
       "path": ""
     },
     "docs": {
-      "version": "2.0.0",
+      "version": "1.0.0",
       "description": "Complete development guide (shared by all editors)",
       "files": ["DEVELOPMENT_GUIDE.md"],
-      "path": "docs"
+      "path": "docs",
+      "remoteUrl": "https://api.baibian.app/prompts/public?name=mophixai_code_prompt&version=1"
     }
   }
 }

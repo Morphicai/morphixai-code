@@ -7,11 +7,30 @@ const __dirname = path.dirname(__filename);
 
 /**
  * 读取本地提示词注册表
- * 所有提示词均从本地获取，不再从远程服务器获取
  */
 export async function fetchPromptsRegistry() {
   const localRegistryPath = path.join(__dirname, '../..', 'prompts-registry.json');
   return await fs.readJson(localRegistryPath);
+}
+
+/**
+ * 从远程 API 获取提示词内容
+ * @param {string} url - 远程 API URL
+ * @returns {Promise<string>} 提示词内容
+ */
+export async function fetchRemotePrompt(url) {
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.text();
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch remote prompt: ${error.message}`);
+  }
 }
 
 export async function readLocalPromptsConfig(projectPath) {

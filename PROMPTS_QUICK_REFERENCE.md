@@ -43,29 +43,30 @@ morphixai prompts update
 ### `.promptsrc`
 ```json
 {
-  "version": "2.0.0",
-  "source": "local",
+  "version": "1.0.0",
+  "source": "mixed",
   "lastUpdated": "2025-01-01T00:00:00Z",
   "editors": {
     "cursor": {
       "enabled": true,
-      "version": "2.0.0",
+      "version": "1.0.0",
       "path": ""
     },
     "claude": {
       "enabled": true,
-      "version": "2.0.0",
+      "version": "1.0.0",
       "path": ""
     },
     "readme": {
       "enabled": true,
-      "version": "2.0.0",
+      "version": "1.0.0",
       "path": ""
     },
     "docs": {
       "enabled": true,
-      "version": "2.0.0",
-      "path": "docs"
+      "version": "1.0.0",
+      "path": "docs",
+      "source": "remote"
     }
   }
 }
@@ -73,10 +74,10 @@ morphixai prompts update
 
 ## 🎯 核心特点
 
-### 本地化
-- ✅ 所有提示词从本地模板复制
-- ✅ 无需网络连接
-- ✅ 稳定可靠
+### 远程支持
+- ✅ 完整文档从远程 API 获取
+- ✅ 自动回退到本地模板
+- ✅ 其他文件直接本地复制
 
 ### 自动化
 - ✅ 创建项目时自动安装
@@ -93,7 +94,7 @@ morphixai prompts update
 
 ### 版本号规范
 ```
-2.0.0
+1.0.0
 │ │ │
 │ │ └─ 修订号（bug 修复）
 │ └─── 次版本号（新功能）
@@ -104,15 +105,15 @@ morphixai prompts update
 
 **全部最新：**
 ```
-✅ cursor     v2.0.0 (latest)
-✅ claude     v2.0.0 (latest)
-✅ readme     v2.0.0 (latest)
-✅ docs       v2.0.0 (latest)
+✅ cursor     v1.0.0 (latest)
+✅ claude     v1.0.0 (latest)
+✅ readme     v1.0.0 (latest)
+✅ docs       v1.0.0 (latest, remote)
 ```
 
 **有更新：**
 ```
-⚠️  cursor     v1.0.0 → v2.0.0 available
+⚠️  cursor     v0.9.0 → v1.0.0 available
 💡 Run morphixai prompts update to update
 ```
 
@@ -165,8 +166,8 @@ my-app/
 ## 🔗 相关文档
 
 - 完整指南：[CLI_PROMPTS_GUIDE.md](CLI_PROMPTS_GUIDE.md)
+- 远程获取：[REMOTE_PROMPTS_GUIDE.md](REMOTE_PROMPTS_GUIDE.md)
 - 提示词管理：[packages/cli/PROMPTS_MANAGEMENT.md](packages/cli/PROMPTS_MANAGEMENT.md)
-- 优化总结：[PROMPTS_OPTIMIZATION_SUMMARY.md](PROMPTS_OPTIMIZATION_SUMMARY.md)
 
 ---
 
