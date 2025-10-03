@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MorphixAI Code CLI tool with embedded dev console",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "morphixai": "./bin/morphixai.js",
     "morphix": "./bin/morphixai.js"
@@ -48,6 +51,15 @@
   ],
   "author": "MorphixAI",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Morphicai/morphixai-code.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/Morphicai/morphixai-code/issues"
+  },
+  "homepage": "https://github.com/Morphicai/morphixai-code#readme",
   "engines": {
     "node": ">=18.0.0"
   }

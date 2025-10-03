@@ -1,0 +1,36 @@
+# Development files
+*.test.js
+*.spec.js
+__tests__/
+coverage/
+
+# Source maps
+*.map
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+.DS_Store
+Thumbs.db
+
+# Build artifacts (keep only necessary files defined in package.json "files")
+node_modules/
+
+# Documentation (keep only essential docs)
+docs/
+examples/
+.changeset/
+
+# Config files
+.eslintrc*
+.prettierrc*
+tsconfig.json
+

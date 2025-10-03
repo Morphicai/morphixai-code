@@ -1,6 +1,7 @@
 {
   "name": "@morphixai/template-react-ionic",
   "version": "1.0.0",
+  "private": true,
   "description": "MorphixAI mini-app template with React and Ionic",
   "main": "meta.json",
   "scripts": {

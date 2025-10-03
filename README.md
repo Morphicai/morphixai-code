@@ -40,23 +40,27 @@
 
 If Node.js is missing, download from the [official site](https://nodejs.org/).
 
-### Step 2: Install MorphixAI CLI
+### Step 2: Create a New Project
+
+**Option 1: Use npx (Recommended - No installation needed)**
 ```bash
-npm install -g @morphixai/cli
+npx @morphixai/cli create my-app
+cd my-app
 ```
 
-### Step 3: Create a New Project
+**Option 2: Install globally first**
 ```bash
+npm install -g @morphixai/cli
 morphixai create my-app
 cd my-app
 ```
 
-### Step 4: Install Dependencies
+### Step 3: Install Dependencies
 ```bash
 npm install
 ```
 
-### Step 5: Start Development
+### Step 4: Start Development
 ```bash
 npm run dev
 ```
@@ -229,6 +233,39 @@ AI: I'll add it:
 - [ ] Flutter development support
 - [ ] GitHub Actions support
 
+## 📦 Publishing (Maintainers)
+
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and publishing.
+
+### Creating a Changeset
+
+When you make changes, create a changeset to describe them:
+
+```bash
+pnpm changeset
+```
+
+### Publishing Process
+
+1. **Version packages** (creates version bump commits):
+   ```bash
+   pnpm version-packages
+   ```
+
+2. **Publish to npm**:
+   ```bash
+   pnpm release
+   ```
+
+### Automated Publishing
+
+Publishing is automated via GitHub Actions:
+1. Merge PR to `main` branch
+2. GitHub Actions will create a "Version Packages" PR
+3. Merge the version PR to trigger automatic publishing to npm
+
+**Requirements**: Add `NPM_TOKEN` secret in GitHub repository settings.
+
 ## 🤝 Contributing
 
 Contributions are welcome! This project uses a monorepo structure:
@@ -262,9 +299,14 @@ morphixai-code/
    npm run dev
    ```
 
-5. Submit a pull request
+5. Create a changeset:
+   ```bash
+   pnpm changeset
+   ```
 
-For detailed development guidance, see `DEVELOPER.md`.
+6. Submit a pull request
+
+For detailed development guidance, see `CONTRIBUTING.md`.
 
 ## 📄 License
 This project is licensed under the MIT License.

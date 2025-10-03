@@ -43,23 +43,27 @@
 
 如未安装 Node.js，请访问[Node.js 官方网站](https://nodejs.org/)。Git 可参考 [git-scm.com](https://git-scm.com/)。
 
-### 第二步：安装 MorphixAI CLI
+### 第二步：创建新项目
+
+**方式一：使用 npx（推荐 - 无需安装）**
 ```bash
-npm install -g @morphixai/cli
+npx @morphixai/cli create my-app
+cd my-app
 ```
 
-### 第三步：创建新项目
+**方式二：先全局安装**
 ```bash
+npm install -g @morphixai/cli
 morphixai create my-app
 cd my-app
 ```
 
-### 第四步：安装依赖
+### 第三步：安装依赖
 ```bash
 npm install
 ```
 
-### 第五步：开始开发
+### 第四步：开始开发
 ```bash
 npm run dev
 ```
