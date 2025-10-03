@@ -92,9 +92,13 @@ morphixai-code/
 │   ├── cli/              # @morphixai/cli
 │   └── templates/        # 模板包（private）
 ├── examples/
-│   └── demo-app/        # 示例应用
+│   └── demo-app/        # 示例应用（不参与构建）
 └── docs/                # 文档
 ```
+
+**注意**：
+- `pnpm build`、`pnpm test`、`pnpm lint` 只在 `packages/` 目录运行
+- `examples/` 目录自动被排除，不会参与构建和测试
 
 ## 本地测试 CLI
 

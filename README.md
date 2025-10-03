@@ -275,9 +275,11 @@ morphixai-code/
 ├── packages/
 │   ├── cli/              # @morphixai/cli package
 │   └── templates/        # Project templates
-├── examples/             # Example applications
+├── examples/             # Example applications (excluded from build)
 └── docs/                # Documentation
 ```
+
+**Note**: Build, test, and lint commands only run on packages in `packages/` directory.
 
 ### For Contributors
 1. Clone the repository:
