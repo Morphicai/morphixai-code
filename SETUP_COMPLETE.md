@@ -26,7 +26,7 @@ pnpm release
 | 包 | 状态 | 说明 |
 |---|------|------|
 | `morphixai-monorepo` (root) | ✅ Private | 不会发布 |
-| `@morphixai/cli` | ✅ Public | 可发布到 npm |
+| `@morphixai/code` | ✅ Public | 可发布到 npm |
 | `@morphixai/template-react-ionic` | ✅ Private | 不会发布 |
 
 **配置位置**:
@@ -74,7 +74,7 @@ pnpm release
 
 **推荐方式（npx - 无需安装）**:
 ```bash
-npx @morphixai/cli create my-app
+npx @morphixai/code create my-app
 cd my-app
 npm install
 npm run dev
@@ -82,7 +82,7 @@ npm run dev
 
 **传统方式（全局安装）**:
 ```bash
-npm install -g @morphixai/cli
+npm install -g @morphixai/code
 morphixai create my-app
 cd my-app
 npm install
@@ -101,7 +101,7 @@ morphixai-code/
 │       ├── ci.yml          # CI 工作流
 │       └── release.yml     # 发布工作流
 ├── packages/
-│   ├── cli/                # @morphixai/cli (public)
+│   ├── cli/                # @morphixai/code (public)
 │   │   ├── package.json    # publishConfig.access: public
 │   │   └── .npmignore      # npm 发布过滤
 │   └── templates/
@@ -239,7 +239,7 @@ pnpm lint             # Lint
 ### Q: 如何创建第一个 changeset？
 ```bash
 pnpm changeset
-# 选择 @morphixai/cli
+# 选择 @morphixai/code
 # 选择 patch/minor/major
 # 描述更改
 ```

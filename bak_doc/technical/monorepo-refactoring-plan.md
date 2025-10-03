@@ -2,7 +2,7 @@
 
 > 执行摘要（TL;DR）
 >
-> - 仅保留两个核心包：`@morphixai/cli`（内嵌开发控制台）与 `@morphixai/template-react-ionic`（内置提示词与文档）。
+> - 仅保留两个核心包：`@morphixai/code`（内嵌开发控制台）与 `@morphixai/template-react-ionic`（内置提示词与文档）。
 > - 提示词随模板内置，且支持 CLI 在线更新（`morphixai prompts update`）。
 - `morphixai dev` 采用单服务器：同端口提供用户应用与内嵌控制台（默认路由 `/__console`）。
 > - Monorepo 使用 PNPM；提供自动迁移与版本管理策略。
@@ -100,7 +100,7 @@ morphixai-code/
 ```
 morphixai/
 ├── packages/
-│   ├── cli/                    # @morphixai/cli
+│   ├── cli/                    # @morphixai/code
 │   │   ├── bin/
 │   │   │   └── morphixai.js    # CLI 入口
 │   │   ├── src/
@@ -162,7 +162,7 @@ morphixai/
 
 ```mermaid
 graph TD
-    A[用户项目] -->|使用| B[@morphixai/cli]
+    A[用户项目] -->|使用| B[@morphixai/code]
     B -->|引用| C[@morphixai/template-react-ionic]
     B -->|内嵌| D[dev-console]
     B -->|管理| E[提示词系统]
@@ -181,7 +181,7 @@ graph TD
 
 ## 4. 包拆分方案
 
-### 4.1 @morphixai/cli
+### 4.1 @morphixai/code
 
 **职责**：提供命令行工具，管理项目生命周期，内嵌开发控制台
 
@@ -249,7 +249,7 @@ packages/cli/
 **package.json**：
 ```json
 {
-  "name": "@morphixai/cli",
+  "name": "@morphixai/code",
   "version": "1.0.0",
   "description": "MorphixAI Code CLI tool with embedded dev console",
   "bin": {
@@ -773,7 +773,7 @@ export default {
        "tools/*"
      ],
      "scripts": {
-       "dev": "pnpm --filter @morphixai/cli dev",
+       "dev": "pnpm --filter @morphixai/code dev",
        "build": "pnpm --recursive run build",
        "test": "pnpm --recursive run test"
      },
@@ -1079,7 +1079,7 @@ export async function installPrompts(projectPath, options = {}) {
 **自动迁移脚本**：
 
 ```javascript
-// @morphixai/cli/src/commands/migrate.js
+// @morphixai/code/src/commands/migrate.js
 export async function migrateProject(projectPath) {
   console.log('🔄 Migrating project to new structure...');
   
@@ -1114,8 +1114,8 @@ export async function migrateProject(projectPath) {
   await fs.remove(path.join(projectPath, 'scripts'));
   
   // 5. 安装新的 CLI
-  console.log('📥 Installing @morphixai/cli...');
-  await execa('npm', ['install', '--save-dev', '@morphixai/cli'], {
+  console.log('📥 Installing @morphixai/code...');
+  await execa('npm', ['install', '--save-dev', '@morphixai/code'], {
     cwd: projectPath
   });
   
@@ -1141,7 +1141,7 @@ export async function migrateProject(projectPath) {
    +    "build": "morphixai build"
      },
      "devDependencies": {
-   +    "@morphixai/cli": "^1.0.0"
+   +    "@morphixai/code": "^1.0.0"
      }
    }
    ```

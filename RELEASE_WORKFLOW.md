@@ -95,7 +95,7 @@ pnpm changeset
 🦋  Which packages would you like to include?
 ```
 
-**选择**：使用空格键选择 `@morphixai/cli`，回车确认
+**选择**：使用空格键选择 `@morphixai/code`，回车确认
 
 ---
 
@@ -285,10 +285,10 @@ git push origin feature/your-feature-name
 **4. 验证发布成功**
 ```bash
 # 检查 npm
-npm view @morphixai/cli
+npm view @morphixai/code
 
 # 或访问
-# https://www.npmjs.com/package/@morphixai/cli
+# https://www.npmjs.com/package/@morphixai/code
 ```
 
 ---
@@ -298,16 +298,16 @@ npm view @morphixai/cli
 #### 1. 测试新版本
 ```bash
 # 清理旧版本（如有）
-npm uninstall -g @morphixai/cli
+npm uninstall -g @morphixai/code
 
 # 从 npm 安装新版本
-npm install -g @morphixai/cli
+npm install -g @morphixai/code
 
 # 验证版本
 morphixai --version
 
 # 创建测试项目
-npx @morphixai/cli create test-release
+npx @morphixai/code create test-release
 cd test-release
 npm install
 npm run dev

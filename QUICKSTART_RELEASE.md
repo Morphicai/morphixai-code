@@ -23,7 +23,7 @@ pnpm test && pnpm lint && pnpm build
 pnpm changeset
 
 # 交互式选择：
-# 1. 选择包：@morphixai/cli
+# 1. 选择包：@morphixai/code
 # 2. 选择版本类型：
 #    - patch: Bug 修复 (1.0.0 → 1.0.1)
 #    - minor: 新功能 (1.0.0 → 1.1.0)
@@ -59,10 +59,10 @@ git push origin feature/your-feature
 ## 验证发布
 ```bash
 # 等待 2-3 分钟后
-npm view @morphixai/cli
+npm view @morphixai/code
 
 # 或测试安装
-npx @morphixai/cli@latest create test-new-version
+npx @morphixai/code@latest create test-new-version
 ```
 
 ---

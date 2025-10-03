@@ -89,7 +89,7 @@ pnpm release
 ```
 morphixai-code/
 ├── packages/
-│   ├── cli/              # @morphixai/cli
+│   ├── cli/              # @morphixai/code
 │   └── templates/        # 模板包（private）
 ├── examples/
 │   └── demo-app/        # 示例应用（不参与构建）

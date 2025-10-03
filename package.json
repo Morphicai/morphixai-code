@@ -9,7 +9,7 @@
         "packages/templates/*"
     ],
     "scripts": {
-        "dev": "pnpm --filter @morphixai/cli dev",
+        "dev": "pnpm --filter @morphixai/code dev",
         "build": "pnpm --filter \"./packages/**\" run build",
         "test": "pnpm --filter \"./packages/**\" run test",
         "lint": "pnpm --filter \"./packages/**\" run lint",
@@ -37,6 +37,6 @@
         "pnpm": ">=7.0.0"
     },
     "dependencies": {
-        "@morphixai/cli": "workspace:^1.0.0"
+        "@morphixai/code": "workspace:^1.0.0"
     }
 }

@@ -47,13 +47,13 @@
 
 **方式一：使用 npx（推荐 - 无需安装）**
 ```bash
-npx @morphixai/cli create my-app
+npx @morphixai/code create my-app
 cd my-app
 ```
 
 **方式二：先全局安装**
 ```bash
-npm install -g @morphixai/cli
+npm install -g @morphixai/code
 morphixai create my-app
 cd my-app
 ```
@@ -74,8 +74,8 @@ npm run dev
 
 ## 🧰 故障排查
 - **端口被占用（8812）**：使用其他端口 `morphixai dev --port 3000`
-- **安装失败（网络/权限）**：执行 `npm cache clean --force` 后重试。如遇权限错误，尝试 `sudo npm install -g @morphixai/cli`
-- **命令未找到**：确保全局 npm 包目录在 PATH 中，或使用 `npx @morphixai/cli create my-app`
+- **安装失败（网络/权限）**：执行 `npm cache clean --force` 后重试。如遇权限错误，尝试 `sudo npm install -g @morphixai/code`
+- **命令未找到**：确保全局 npm 包目录在 PATH 中，或使用 `npx @morphixai/code create my-app`
 - **浏览器未自动打开**：手动访问 `http://localhost:8812`（或您的自定义端口）
 
 ## 🗂 项目结构

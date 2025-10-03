@@ -5,28 +5,13 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * 读取本地提示词注册表
+ * 所有提示词均从本地获取，不再从远程服务器获取
+ */
 export async function fetchPromptsRegistry() {
-  try {
-    // 优先从线上获取
-    const response = await fetch('https://app-shell.focusbe.com/api/prompts/registry.json');
-    if (response.ok) {
-      return await response.json();
-    }
-  } catch (error) {
-    console.warn('Failed to fetch online registry, using local fallback');
-  }
-  
-  // 降级到本地注册表
   const localRegistryPath = path.join(__dirname, '../..', 'prompts-registry.json');
   return await fs.readJson(localRegistryPath);
-}
-
-export async function fetchPromptFile(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch prompt file: ${response.statusText}`);
-  }
-  return await response.text();
 }
 
 export async function readLocalPromptsConfig(projectPath) {
@@ -47,18 +32,18 @@ export async function writeLocalPromptsConfig(projectPath, config) {
 export async function checkPromptsVersion(projectPath) {
   try {
     const localConfig = await readLocalPromptsConfig(projectPath);
-    const remoteRegistry = await fetchPromptsRegistry();
+    const registry = await fetchPromptsRegistry();
     
     const updates = {};
     
-    for (const [editor, config] of Object.entries(remoteRegistry.prompts)) {
+    for (const [editor, config] of Object.entries(registry.prompts)) {
       const localVersion = localConfig?.editors?.[editor]?.version || '0.0.0';
-      const remoteVersion = config.version;
+      const registryVersion = config.version;
       
       updates[editor] = {
         from: localVersion,
-        to: remoteVersion,
-        needsUpdate: compareVersions(localVersion, remoteVersion) < 0
+        to: registryVersion,
+        needsUpdate: compareVersions(localVersion, registryVersion) < 0
       };
     }
     

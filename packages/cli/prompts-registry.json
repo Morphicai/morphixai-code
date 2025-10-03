@@ -1,8 +1,10 @@
 {
-  "baseUrl": "https://app-shell.focusbe.com/api/prompts",
+  "version": "1.0.0",
+  "description": "MorphixAI AI Prompts Registry - All prompts are stored locally in templates",
   "prompts": {
     "cursor": {
       "version": "1.0.0",
+      "description": "Cursor AI prompts for MorphixAI development",
       "files": [
         "morphixai-app-development.md",
         "file-protection.md",
@@ -13,14 +15,13 @@
         "icons-usage.md",
         "README.md"
       ],
-      "path": ".cursor/rules",
-      "url": "https://app-shell.focusbe.com/api/prompts/cursor"
+      "path": ".cursor/rules"
     },
     "claude": {
       "version": "1.0.0",
+      "description": "Claude Code prompts for MorphixAI development",
       "files": ["CLAUDE.md"],
-      "path": "docs",
-      "url": "https://app-shell.focusbe.com/api/prompts/claude"
+      "path": "docs"
     }
   }
 }

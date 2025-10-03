@@ -1,5 +1,5 @@
 {
-  "name": "@morphixai/cli",
+  "name": "@morphixai/code",
   "version": "1.0.0",
   "description": "MorphixAI Code CLI tool with embedded dev console",
   "type": "module",

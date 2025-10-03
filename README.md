@@ -44,13 +44,13 @@ If Node.js is missing, download from the [official site](https://nodejs.org/).
 
 **Option 1: Use npx (Recommended - No installation needed)**
 ```bash
-npx @morphixai/cli create my-app
+npx @morphixai/code create my-app
 cd my-app
 ```
 
 **Option 2: Install globally first**
 ```bash
-npm install -g @morphixai/cli
+npm install -g @morphixai/code
 morphixai create my-app
 cd my-app
 ```
@@ -71,8 +71,8 @@ The development console will open at `http://localhost:8812`. Start coding in th
 
 ## 🧰 Troubleshooting
 - **Port already in use (8812)**: Use a different port with `morphixai dev --port 3000`
-- **Install failures (network/permissions)**: Clear cache with `npm cache clean --force`, then retry. Try `sudo npm install -g @morphixai/cli` if you get permission errors.
-- **Command not found**: Ensure global npm packages directory is in your PATH, or use `npx @morphixai/cli create my-app`
+- **Install failures (network/permissions)**: Clear cache with `npm cache clean --force`, then retry. Try `sudo npm install -g @morphixai/code` if you get permission errors.
+- **Command not found**: Ensure global npm packages directory is in your PATH, or use `npx @morphixai/code create my-app`
 - **Browser didn't open**: Manually visit `http://localhost:8812` (or your custom port)
 
 ## 🗂 Project Structure
@@ -273,7 +273,7 @@ Contributions are welcome! This project uses a monorepo structure:
 ```
 morphixai-code/
 ├── packages/
-│   ├── cli/              # @morphixai/cli package
+│   ├── cli/              # @morphixai/code package
 │   └── templates/        # Project templates
 ├── examples/             # Example applications (excluded from build)
 └── docs/                # Documentation

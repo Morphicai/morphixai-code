@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial monorepo setup with pnpm workspaces
-- @morphixai/cli package with embedded development console
+- @morphixai/code package with embedded development console
 - React + Ionic template
 - Virtual file system for user projects
 - Hot module replacement (HMR) support
