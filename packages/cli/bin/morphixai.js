@@ -29,6 +29,7 @@ program
   .option('-p, --port <port>', 'Port number', '8812')
   .option('--console-path <path>', 'Console path', '/__console')
   .option('--debug', 'Enable debug mode')
+  .option('--no-open', 'Do not automatically open browser')
   .action(devCommand);
 
 program

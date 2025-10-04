@@ -12,17 +12,8 @@ const CACHE_DIR = path.join(os.homedir(), '.morphixai', 'templates');
 
 export async function copyTemplate(templateName, targetPath, variables = {}) {
   try {
-    let templatePath;
-    
-    // 1. 首先尝试从 monorepo 本地路径（开发时使用）
-    const localTemplatePath = path.resolve(__dirname, '../../../templates', templateName, 'template');
-    if (await fs.pathExists(localTemplatePath)) {
-      console.log('Using local template from monorepo...');
-      templatePath = localTemplatePath;
-    } else {
-      // 2. 从远程仓库下载模板
-      templatePath = await downloadTemplate(templateName);
-    }
+    // 从远程仓库下载模板（使用缓存）
+    const templatePath = await downloadTemplate(templateName);
     
     if (!await fs.pathExists(templatePath)) {
       throw new Error(`Template path not found: ${templatePath}`);

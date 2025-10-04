@@ -3,6 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import { createServer } from 'vite';
 import { fileURLToPath } from 'url';
+import open from 'open';
 import { startFileWatcher } from '../dev-server/file-watcher.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,7 +11,7 @@ const __dirname = path.dirname(__filename);
 
 export async function devCommand(options) {
   try {
-    const { port = 8812, consolePath = '/__console', debug = false } = options;
+    const { port = 8812, consolePath = '/__console', debug = false, open: shouldOpen = true } = options;
     const projectPath = process.cwd();
     
     // 检查是否在 MorphixAI 项目中
@@ -91,15 +92,28 @@ export async function devCommand(options) {
     const server = await createServer(viteConfig);
     await server.listen();
     
+    const serverUrl = `http://localhost:${port}`;
+    
     console.log();
     console.log(chalk.green('🚀 Development server started!'));
     console.log();
-    console.log(chalk.cyan(`  Dev Console:   http://localhost:${port}`));
+    console.log(chalk.cyan(`  Dev Console:   ${serverUrl}`));
     if (debug) {
       console.log(chalk.yellow(`  Debug Mode:    Enabled`));
     }
     console.log();
     console.log(chalk.gray('Press Ctrl+C to stop the server'));
+    
+    // 自动打开浏览器
+    if (shouldOpen) {
+      console.log();
+      console.log(chalk.gray('Opening browser...'));
+      try {
+        await open(serverUrl);
+      } catch (error) {
+        console.log(chalk.yellow(`⚠️  Could not open browser automatically: ${error.message}`));
+      }
+    }
     
     // 优雅关闭
     process.on('SIGINT', async () => {
