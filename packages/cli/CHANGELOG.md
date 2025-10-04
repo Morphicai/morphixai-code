@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.9
+
+### Patch Changes
+
+- 6695362: add npm doc
+
 ## 1.1.8
 
 ### Patch Changes
