@@ -37,6 +37,12 @@ export async function copyTemplate(templateName, targetPath, variables = {}) {
     // 处理模板变量
     await processTemplateFiles(targetPath, variables);
     
+    // 返回模板信息
+    return {
+      templatePath,
+      templateName
+    };
+    
   } catch (error) {
     throw new Error(`Failed to copy template: ${error.message}`);
   }
