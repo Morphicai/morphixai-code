@@ -6,6 +6,7 @@ import { createCommand } from '../src/commands/create.js';
 import { devCommand } from '../src/commands/dev.js';
 import { buildCommand } from '../src/commands/build.js';
 import { promptsCommand } from '../src/commands/prompts.js';
+import { templateCommand } from '../src/commands/template.js';
 
 const program = new Command();
 
@@ -56,5 +57,24 @@ promptsCmd
   .description('Install prompts for specific editor')
   .argument('[editor]', 'Editor type (cursor, claude)', 'all')
   .action((editor) => promptsCommand('install', { editor }));
+
+const templateCmd = program
+  .command('template')
+  .description('Manage project templates');
+
+templateCmd
+  .command('list')
+  .description('List available templates')
+  .action(() => templateCommand('list'));
+
+templateCmd
+  .command('clear-cache')
+  .description('Clear template cache')
+  .action(() => templateCommand('clear-cache'));
+
+templateCmd
+  .command('update')
+  .description('Update template cache')
+  .action(() => templateCommand('update'));
 
 program.parse();

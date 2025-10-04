@@ -1,29 +1,27 @@
 import fs from 'fs-extra';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
+import { execa } from 'execa';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// 模板缓存目录
+const CACHE_DIR = path.join(os.homedir(), '.morphixai', 'templates');
 
 export async function copyTemplate(templateName, targetPath, variables = {}) {
   try {
     let templatePath;
     
-    // 首先尝试从 monorepo 本地路径（开发时使用）
+    // 1. 首先尝试从 monorepo 本地路径（开发时使用）
     const localTemplatePath = path.resolve(__dirname, '../../../templates', templateName, 'template');
     if (await fs.pathExists(localTemplatePath)) {
+      console.log('Using local template from monorepo...');
       templatePath = localTemplatePath;
     } else {
-      // 尝试从 node_modules 解析模板包（发布后使用）
-      try {
-        const templatePackageName = `@morphixai/template-${templateName}`;
-        // 在 ES 模块中使用 import.meta.resolve（Node.js 18.19.0+）
-        const packageUrl = await import.meta.resolve(`${templatePackageName}/package.json`);
-        const packagePath = fileURLToPath(packageUrl);
-        templatePath = path.join(path.dirname(packagePath), 'template');
-      } catch (error) {
-        throw new Error(`Template "${templateName}" not found`);
-      }
+      // 2. 从远程仓库下载模板
+      templatePath = await downloadTemplate(templateName);
     }
     
     if (!await fs.pathExists(templatePath)) {
@@ -41,6 +39,84 @@ export async function copyTemplate(templateName, targetPath, variables = {}) {
     
   } catch (error) {
     throw new Error(`Failed to copy template: ${error.message}`);
+  }
+}
+
+async function downloadTemplate(templateName) {
+  try {
+    // 读取模板注册表
+    const registryPath = path.join(__dirname, '../..', 'templates-registry.json');
+    const registry = await fs.readJson(registryPath);
+    
+    // 查找模板配置
+    const templateConfig = registry.templates.find(t => t.name === templateName);
+    if (!templateConfig) {
+      throw new Error(`Template "${templateName}" not found in registry`);
+    }
+    
+    // 确保缓存目录存在
+    await fs.ensureDir(CACHE_DIR);
+    
+    const repoUrl = registry.repository;
+    const branch = registry.branch || 'main';
+    const templatePath = templateConfig.path;
+    
+    // 缓存目录路径
+    const cacheRepoDir = path.join(CACHE_DIR, 'morphixai-code-templates');
+    const cachedTemplatePath = path.join(cacheRepoDir, templatePath);
+    
+    // 检查缓存是否存在且是否需要更新
+    const shouldUpdate = !(await fs.pathExists(cacheRepoDir)) || await shouldUpdateCache(cacheRepoDir);
+    
+    if (shouldUpdate) {
+      console.log('Downloading template from remote repository...');
+      
+      // 删除旧缓存
+      if (await fs.pathExists(cacheRepoDir)) {
+        await fs.remove(cacheRepoDir);
+      }
+      
+      // 克隆仓库（浅克隆，只克隆最新提交）
+      await execa('git', [
+        'clone',
+        '--depth=1',
+        '--branch', branch,
+        repoUrl,
+        cacheRepoDir
+      ]);
+      
+      console.log('Template downloaded successfully!');
+    } else {
+      console.log('Using cached template...');
+    }
+    
+    // 检查模板路径是否存在
+    if (!await fs.pathExists(cachedTemplatePath)) {
+      throw new Error(`Template path "${templatePath}" not found in repository`);
+    }
+    
+    return cachedTemplatePath;
+    
+  } catch (error) {
+    throw new Error(`Failed to download template: ${error.message}`);
+  }
+}
+
+async function shouldUpdateCache(cacheRepoDir) {
+  try {
+    // 检查缓存是否超过24小时
+    const gitDir = path.join(cacheRepoDir, '.git');
+    if (!await fs.pathExists(gitDir)) {
+      return true;
+    }
+    
+    const stats = await fs.stat(gitDir);
+    const ageInHours = (Date.now() - stats.mtime.getTime()) / (1000 * 60 * 60);
+    
+    // 如果缓存超过24小时，需要更新
+    return ageInHours > 24;
+  } catch (error) {
+    return true;
   }
 }
 

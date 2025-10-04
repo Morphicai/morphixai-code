@@ -95,8 +95,17 @@ my-app/
 ```bash
 npm run dev              # Start development server with live reload
 npm run build            # Build for production
-npm run prompts:check    # Check AI prompts version
-npm run prompts:update   # Update AI prompts to latest
+```
+
+### CLI Commands
+```bash
+morphixai create <project-name>    # Create a new project
+morphixai dev                      # Start development server
+morphixai build                    # Build for production
+morphixai template list            # List available templates
+morphixai template update          # Update template cache
+morphixai prompts check            # Check AI prompts version
+morphixai prompts update           # Update AI prompts
 ```
 
 ## 🤖 What is MorphixAI?
