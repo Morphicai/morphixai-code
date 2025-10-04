@@ -9,19 +9,27 @@ const __dirname = path.dirname(__filename);
 /**
  * 获取模板提示词文件的源路径
  */
-function getTemplatePromptsPath() {
-  // CLI 包的根目录
+function getTemplatePromptsPath(templatePath) {
+  // 如果提供了模板路径，直接使用
+  if (templatePath) {
+    return templatePath;
+  }
+  
+  // 否则尝试从 monorepo 本地路径（仅用于开发）
   const cliRoot = path.resolve(__dirname, '../..');
-  // 模板目录
-  const templatePath = path.join(cliRoot, '../templates/react-ionic/template');
-  return templatePath;
+  const localTemplatePath = path.join(cliRoot, '../templates/react-ionic/template');
+  return localTemplatePath;
 }
 
 /**
  * 安装提示词（支持远程和本地）
+ * @param {string} projectPath - 项目路径
+ * @param {object} options - 选项
+ * @param {string} options.editor - 编辑器类型
+ * @param {string} options.templatePath - 模板路径（可选）
  */
 export async function installPrompts(projectPath, options = {}) {
-  const { editor = 'all' } = options;
+  const { editor = 'all', templatePath } = options;
   
   const registry = await fetchPromptsRegistry();
   
@@ -39,11 +47,11 @@ export async function installPrompts(projectPath, options = {}) {
           installedEditors.push(key);
         } catch (error) {
           console.warn(`⚠️  Remote fetch failed for ${key}, falling back to local: ${error.message}`);
-          await installEditorPromptsFromLocal(projectPath, key, config);
+          await installEditorPromptsFromLocal(projectPath, key, config, templatePath);
           installedEditors.push(key);
         }
       } else {
-        await installEditorPromptsFromLocal(projectPath, key, config);
+        await installEditorPromptsFromLocal(projectPath, key, config, templatePath);
         installedEditors.push(key);
       }
     }
@@ -61,7 +69,7 @@ export async function installPrompts(projectPath, options = {}) {
       continue;
     }
     
-    await installEditorPromptsFromLocal(projectPath, editorName, config);
+    await installEditorPromptsFromLocal(projectPath, editorName, config, templatePath);
     installedEditors.push(editorName);
   }
   
@@ -98,9 +106,9 @@ async function installEditorPromptsFromRemote(projectPath, editorName, config) {
 /**
  * 从本地模板安装编辑器提示词
  */
-async function installEditorPromptsFromLocal(projectPath, editorName, config) {
-  const templatePath = getTemplatePromptsPath();
-  const sourcePath = path.join(templatePath, config.path);
+async function installEditorPromptsFromLocal(projectPath, editorName, config, templatePath) {
+  const templateBasePath = getTemplatePromptsPath(templatePath);
+  const sourcePath = path.join(templateBasePath, config.path);
   const targetPath = path.join(projectPath, config.path);
   
   // 检查模板源路径是否存在

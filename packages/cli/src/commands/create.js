@@ -49,7 +49,7 @@ export async function createCommand(projectName, options) {
     
     // 复制模板
     spinner.start('Copying template files...');
-    await copyTemplate(template, projectPath, {
+    const templateInfo = await copyTemplate(template, projectPath, {
       PROJECT_NAME: projectName,
       PROJECT_ID: projectId
     });
@@ -68,9 +68,11 @@ export async function createCommand(projectName, options) {
     await fs.writeJson(path.join(projectPath, 'project-config.json'), projectConfig, { spaces: 2 });
     spinner.succeed('Project configuration complete');
     
-    // 安装提示词
+    // 安装提示词（传递模板源路径）
     spinner.start('Installing AI prompts...');
-    await installPrompts(projectPath);
+    await installPrompts(projectPath, { 
+      templatePath: templateInfo?.templatePath 
+    });
     spinner.succeed('AI prompts installed');
     
     // 询问是否安装依赖
