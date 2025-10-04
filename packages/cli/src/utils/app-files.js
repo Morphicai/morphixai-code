@@ -2,8 +2,11 @@ import fs from 'fs-extra';
 import path from 'path';
 
 export async function generateAppFiles(projectPath) {
-  const appDir = projectPath;
+  const srcDir = path.join(projectPath, 'src');
   const outputFile = path.join(projectPath, '_dev/app-files.js');
+  
+  // 检查 src 目录是否存在，不存在则使用根目录（向后兼容）
+  const appDir = await fs.pathExists(srcDir) ? srcDir : projectPath;
   
   if (!await fs.pathExists(appDir)) {
     throw new Error('project directory not found');
@@ -29,7 +32,7 @@ async function readDirectoryRecursive(dir, baseDir) {
   const items = await fs.readdir(dir, { withFileTypes: true });
   
   // 需要排除的目录和文件
-  const excludeDirs = ['_dev', 'node_modules', 'dist', 'build', '.git', 'public', 'docs'];
+  const excludeDirs = ['_dev', 'node_modules', 'dist', 'build', '.git', 'docs'];
   const excludeFiles = ['package.json', 'package-lock.json', 'project-config.json', '.gitignore', '.npmignore', '.promptsrc', 'CLAUDE.md', '.cursorrules'];
   
   for (const item of items) {
@@ -69,7 +72,10 @@ async function readDirectoryRecursive(dir, baseDir) {
 
 export async function watchAppFiles(projectPath, callback) {
   const chokidar = await import('chokidar');
-  const appDir = projectPath;
+  const srcDir = path.join(projectPath, 'src');
+  
+  // 检查 src 目录是否存在，不存在则使用根目录（向后兼容）
+  const appDir = await fs.pathExists(srcDir) ? srcDir : projectPath;
   
   if (!await fs.pathExists(appDir)) {
     throw new Error('project directory not found');
@@ -82,7 +88,6 @@ export async function watchAppFiles(projectPath, callback) {
       '**/_dev/**', // 忽略 _dev 目录
       '**/dist/**',
       '**/build/**',
-      '**/public/**',
       '**/docs/**',
       'package.json',
       'package-lock.json',

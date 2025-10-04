@@ -17,25 +17,26 @@
 
 ```
 项目根目录/
-├── app.jsx              # 应用入口文件
-├── components/          # 组件目录
-├── styles/             # 样式目录（CSS Modules）
-├── services/           # 服务层（可创建）
-├── hooks/              # 自定义 Hooks（可创建）
-├── utils/              # 工具函数（可创建）
-├── constants/          # 常量定义（可创建）
-├── assets/             # 应用资源（可创建）
-├── docs/               # 文档目录（请勿修改）
-└── public/             # 静态资源（请勿修改）
+├── src/                # 源代码目录
+│   ├── app.jsx        # 应用入口文件
+│   ├── components/    # 组件目录
+│   ├── styles/        # 样式目录（CSS Modules）
+│   ├── services/      # 服务层（可创建）
+│   ├── hooks/         # 自定义 Hooks（可创建）
+│   ├── utils/         # 工具函数（可创建）
+│   ├── constants/     # 常量定义（可创建）
+│   └── assets/        # 应用资源（可创建）
+├── _dev/              # 开发工具目录（自动生成）
+└── docs/              # 文档目录（请勿修改）
 ```
 
 ## 🚀 快速开始
 
 ### 开发约束
 
-- ✅ **允许**：在应用根目录及其子目录下创建、修改任何文件
+- ✅ **允许**：在 `src/` 目录下创建、修改任何文件
 - ❌ **严禁**：修改项目配置文件（package.json, vite.config.js 等）
-- ❌ **严禁**：修改 `docs/` 和 `public/` 目录
+- ❌ **严禁**：修改 `_dev/` 和 `docs/` 目录
 
 ### 核心技术
 
@@ -47,7 +48,7 @@
 
 ### 入口文件
 
-应用必须使用 `app.jsx` 作为入口文件：
+应用必须使用 `src/app.jsx` 作为入口文件：
 
 ```jsx
 import React from 'react';

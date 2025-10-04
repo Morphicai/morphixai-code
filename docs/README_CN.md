@@ -84,9 +84,12 @@ my-app/
 ├── src/                    # 你的小程序源码
 │   ├── app.jsx            # 应用入口
 │   ├── components/        # React 组件
-│   └── styles/            # CSS 模块
-├── docs/                  # 文档（CLAUDE.md、DEVELOPER.md）
-├── public/                # 静态资源
+│   ├── styles/            # CSS 模块
+│   ├── services/          # 服务层（可选）
+│   ├── hooks/             # 自定义 hooks（可选）
+│   └── utils/             # 工具函数（可选）
+├── _dev/                  # 开发工具（自动生成）
+├── docs/                  # 文档
 ├── package.json           # 依赖和脚本
 └── project-config.json    # 项目配置和 ID
 ```

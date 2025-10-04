@@ -74,12 +74,18 @@ npm install
 
 ## 🗂 プロジェクト構造
 ```
-src/
-  app/                # ミニアプリのソースコード（ここから開始）
-  _dev/               # 開発シェル、ユーティリティ、例、設定
-public/               # 静的アセット
-scripts/              # 開発ヘルパー（watch、restore、ID生成）
-vite.config.js        # 開発サーバー設定（デフォルトはポート8812）
+my-app/
+├── src/                    # ミニアプリのソースコード
+│   ├── app.jsx            # アプリケーションエントリーポイント
+│   ├── components/        # React コンポーネント
+│   ├── styles/            # CSS モジュール
+│   ├── services/          # サービスレイヤー（オプション）
+│   ├── hooks/             # カスタムフック（オプション）
+│   └── utils/             # ユーティリティ関数（オプション）
+├── _dev/                  # 開発ツール（自動生成）
+├── docs/                  # ドキュメント
+├── package.json           # 依存関係とスクリプト
+└── project-config.json    # プロジェクト設定とID
 ```
 
 ## 🤖 MorphixAIとは？

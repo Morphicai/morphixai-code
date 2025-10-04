@@ -81,9 +81,12 @@ my-app/
 ├── src/                    # Your mini-app source code
 │   ├── app.jsx            # App entry point
 │   ├── components/        # React components
-│   └── styles/            # CSS modules
-├── docs/                  # Documentation (CLAUDE.md, DEVELOPER.md)
-├── public/                # Static assets
+│   ├── styles/            # CSS modules
+│   ├── services/          # Service layer (optional)
+│   ├── hooks/             # Custom hooks (optional)
+│   └── utils/             # Utility functions (optional)
+├── _dev/                  # Development tools (auto-generated)
+├── docs/                  # Documentation
 ├── package.json           # Dependencies and scripts
 └── project-config.json    # Project configuration and ID
 ```
