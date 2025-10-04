@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.2
+
+### Patch Changes
+
+- 5eb13fe: fix app create
+
 ## 1.1.1
 
 ### Patch Changes
