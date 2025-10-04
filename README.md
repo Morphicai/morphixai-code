@@ -214,17 +214,16 @@ AI: I'll add it:
 - Pay only for the AI you use
 
 ## 🔧 Get Help
-- Developer Docs: [DEVELOPER.md](./DEVELOPER.md)
 - Official Spec: [MorphixAI Development Specification](https://app-shell.focusbe.com/docs/app-development-specification.md)
-- Community: GitHub Issues
+- Community: [GitHub Issues](https://github.com/Morphicai/morphixai-code/issues)
 - AI Assistant: Ask directly in your editor
 - Email: `contact@baibian.app`
 
 ## 📖 More Resources
-- Developer Documentation — [DEVELOPER.md](./DEVELOPER.md)
-- Complete Development Specification — [CLAUDE.md](./CLAUDE.md)
-- Project Technical Documentation — [docs/technical/project-overview.md](./docs/technical/project-overview.md)
-- Development Guidelines — [docs/requirements/development-guidelines.md](./docs/requirements/development-guidelines.md)
+- Contributing Guide — [CONTRIBUTING.md](./CONTRIBUTING.md)
+- Quick Start Guide — [QUICKSTART_RELEASE.md](./QUICKSTART_RELEASE.md)
+- CLI Prompts Guide — [CLI_PROMPTS_GUIDE.md](./CLI_PROMPTS_GUIDE.md)
+- Remote Prompts Guide — [REMOTE_PROMPTS_GUIDE.md](./REMOTE_PROMPTS_GUIDE.md)
 
 ## 🗺️ Roadmap
 - [ ] Support fullscreen mode

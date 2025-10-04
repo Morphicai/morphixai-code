@@ -201,17 +201,16 @@ AI: 추가하겠습니다:
 - 사용한 AI에 대해서만 지불
 
 ## 🔧 도움 받기
-- 개발자 문서: [DEVELOPER.md](../DEVELOPER.md)
 - 공식 사양: [MorphixAI 개발 사양](https://app-shell.focusbe.com/docs/app-development-specification.md)
-- 커뮤니티: GitHub Issues
+- 커뮤니티: [GitHub Issues](https://github.com/Morphicai/morphixai-code/issues)
 - AI 어시스턴트: 에디터에서 직접 질문
 - 이메일: `contact@baibian.app`
 
 ## 📖 추가 리소스
-- 개발자 문서 — [DEVELOPER.md](../DEVELOPER.md)
-- 완전한 개발 사양 — [CLAUDE.md](../CLAUDE.md)
-- 프로젝트 기술 문서 — [docs/technical/project-overview.md](./technical/project-overview.md)
-- 개발 가이드라인 — [docs/requirements/development-guidelines.md](./requirements/development-guidelines.md)
+- 기여 가이드 — [CONTRIBUTING.md](../CONTRIBUTING.md)
+- 빠른 시작 가이드 — [QUICKSTART_RELEASE.md](../QUICKSTART_RELEASE.md)
+- CLI 프롬프트 가이드 — [CLI_PROMPTS_GUIDE.md](../CLI_PROMPTS_GUIDE.md)
+- 원격 프롬프트 가이드 — [REMOTE_PROMPTS_GUIDE.md](../REMOTE_PROMPTS_GUIDE.md)
 
 ## 🗺️ 로드맵
 - [ ] 전체 화면 모드 지원

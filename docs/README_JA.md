@@ -200,17 +200,16 @@ AI: 追加します：
 - 使用したAIのみに対して支払い
 
 ## 🔧 ヘルプ
-- 開発者ドキュメント：[DEVELOPER.md](../DEVELOPER.md)
 - 公式仕様：[MorphixAI開発仕様](https://app-shell.focusbe.com/docs/app-development-specification.md)
-- コミュニティ：GitHub Issues
+- コミュニティ：[GitHub Issues](https://github.com/Morphicai/morphixai-code/issues)
 - AIアシスタント：エディタで直接質問
 - メール：`contact@baibian.app`
 
 ## 📖 その他のリソース
-- 開発者ドキュメント — [DEVELOPER.md](../DEVELOPER.md)
-- 完全な開発仕様 — [CLAUDE.md](../CLAUDE.md)
-- プロジェクト技術ドキュメント — [docs/technical/project-overview.md](./technical/project-overview.md)
-- 開発ガイドライン — [docs/requirements/development-guidelines.md](./requirements/development-guidelines.md)
+- コントリビューションガイド — [CONTRIBUTING.md](../CONTRIBUTING.md)
+- クイックスタートガイド — [QUICKSTART_RELEASE.md](../QUICKSTART_RELEASE.md)
+- CLIプロンプトガイド — [CLI_PROMPTS_GUIDE.md](../CLI_PROMPTS_GUIDE.md)
+- リモートプロンプトガイド — [REMOTE_PROMPTS_GUIDE.md](../REMOTE_PROMPTS_GUIDE.md)
 
 ## 🗺️ ロードマップ
 - [ ] フルスクリーンモードのサポート

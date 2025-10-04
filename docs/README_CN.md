@@ -217,17 +217,16 @@ AI：我来添加：
 - 按需付费，仅为实际调用的 AI 支付
 
 ## 🔧 如何获得帮助
-- 开发者文档：[DEVELOPER.md](../DEVELOPER.md)
 - 官方规范：[MorphixAI 开发规范](https://app-shell.focusbe.com/docs/app-development-specification.md)
-- 社区支持：GitHub Issues
+- 社区支持：[GitHub Issues](https://github.com/Morphicai/morphixai-code/issues)
 - AI 助手：在编辑器中直接提问
 - 官方邮箱：`contact@baibian.app`
 
 ## 📖 更多资源
-- 开发者文档 — [DEVELOPER.md](../DEVELOPER.md)
-- 完整开发规范 — [CLAUDE.md](../CLAUDE.md)
-- 项目技术文档 — [technical/project-overview.md](./technical/project-overview.md)
-- 开发指南 — [requirements/development-guidelines.md](./requirements/development-guidelines.md)
+- 贡献指南 — [CONTRIBUTING.md](../CONTRIBUTING.md)
+- 快速开始指南 — [QUICKSTART_RELEASE.md](../QUICKSTART_RELEASE.md)
+- CLI 提示指南 — [CLI_PROMPTS_GUIDE.md](../CLI_PROMPTS_GUIDE.md)
+- 远程提示指南 — [REMOTE_PROMPTS_GUIDE.md](../REMOTE_PROMPTS_GUIDE.md)
 
 ## 🗺 路线图
 - [ ] 支持全屏模式
