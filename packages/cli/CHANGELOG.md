@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.5
+
+### Patch Changes
+
+- 909a027: fix error
+
 ## 1.2.0
 
 ### Minor Changes
