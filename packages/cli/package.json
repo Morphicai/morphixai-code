@@ -1,6 +1,6 @@
 {
   "name": "@morphixai/code",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MorphixAI Code CLI tool with embedded dev console",
   "type": "module",
   "publishConfig": {
