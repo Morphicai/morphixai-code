@@ -10,7 +10,7 @@ import React, {
 import { IonLoading, IonToast } from '@ionic/react';
 import styles from '../styles/AppShellIframe.module.css';
 import initialAppFiles from '~user/app-files.js';
-import { APP_SHELL_CONFIG } from '../config/appShellConfig.js';
+import { APP_SHELL_CONFIG, getBaseUrl } from '../config/appShellConfig.js';
 import { createHostClientAsync } from '../lib/hostClient.ts';
 
 /**
@@ -23,7 +23,6 @@ import { createHostClientAsync } from '../lib/hostClient.ts';
 const AppShellIframe = forwardRef(function AppShellIframe(
     {
         appId = APP_SHELL_CONFIG.defaultAppId,
-        isDev = true,
         onAppLoad,
         onAppError,
         onHostClientReady,
@@ -40,13 +39,16 @@ const AppShellIframe = forwardRef(function AppShellIframe(
     const [toastMessage, setToastMessage] = useState('');
     const [hostClientReady, setHostClientReady] = useState(false);
     const [appFiles, setAppFiles] = useState(initialAppFiles);
+    useEffect(() => {
+        console.log('appFiles', appFiles);
+        setAppFiles(initialAppFiles);
+        sendFileUpdateMessage();
+    }, [initialAppFiles]);
     // iframe URL
     const iframeUrl = useMemo(() => {
-        const baseUrl = isDev
-            ? APP_SHELL_CONFIG.devBaseUrl
-            : APP_SHELL_CONFIG.baseUrl;
+        const baseUrl = getBaseUrl();
         return `${baseUrl}/app-runner/${appId}?t=${lastUpdateTime}`;
-    }, [appId, isDev, lastUpdateTime]);
+    }, [appId, lastUpdateTime]);
 
     // Initialize HostClient (simplified)
     const initializeHostClient = useCallback(async () => {
@@ -58,7 +60,7 @@ const AppShellIframe = forwardRef(function AppShellIframe(
             console.log('HostClient initialized successfully:', client);
             hostClientRef.current = client;
             setHostClientReady(true);
-           
+
             onHostClientReady?.(client);
         } catch (error) {
             console.error('HostClient initialization failed:', error);
@@ -83,32 +85,24 @@ const AppShellIframe = forwardRef(function AppShellIframe(
     }, [destroyHostClient]);
 
     // Send file update message to iframe
-    const sendFileUpdateMessage = useCallback(
-        (targetAppId = '*') => {
-            if (iframeRef.current && iframeRef.current.contentWindow) {
-                const message = {
-                    type: 'BAIBIAN_APP_FILE_UPDATE',
-                    targetAppId: targetAppId,
-                    timestamp: Date.now(),
-                };
+    const sendFileUpdateMessage = useCallback((targetAppId = '*') => {
+        if (iframeRef.current && iframeRef.current.contentWindow) {
+            const message = {
+                type: 'BAIBIAN_APP_FILE_UPDATE',
+                targetAppId: targetAppId,
+                timestamp: Date.now(),
+            };
 
-                const targetOrigin = isDev
-                    ? APP_SHELL_CONFIG.devBaseUrl
-                    : APP_SHELL_CONFIG.baseUrl;
+            const targetOrigin = getBaseUrl();
 
-                iframeRef.current.contentWindow.postMessage(
-                    message,
-                    targetOrigin
-                );
-                console.log('🔄 Sent file update message to iframe:', message);
+            iframeRef.current.contentWindow.postMessage(message, targetOrigin);
+            console.log('🔄 Sent file update message to iframe:', message);
 
-                // 显示提示
-                setToastMessage('Code updated, notifying app to reload...');
-                setShowToast(true);
-            }
-        },
-        [isDev]
-    );
+            // 显示提示
+            setToastMessage('Code updated, notifying app to reload...');
+            setShowToast(true);
+        }
+    }, []);
     // Message handling (simplified)
     const handleMessage = useCallback(
         (event) => {
@@ -125,7 +119,11 @@ const AppShellIframe = forwardRef(function AppShellIframe(
                         onAppLoad?.(data);
                         break;
                     case 'BAIBIAN_APP_ERROR':
-                        setError(data.error || data.message || 'Failed to load the app');
+                        setError(
+                            data.error ||
+                                data.message ||
+                                'Failed to load the app'
+                        );
                         onAppError?.(data.error || data.message);
                         break;
                     case 'GET_APP_FILES_REQUEST':
@@ -163,18 +161,6 @@ const AppShellIframe = forwardRef(function AppShellIframe(
     }, []);
 
     // HMR support (simplified)
-    useEffect(() => {
-        let dispose;
-        if (import.meta.hot) {
-            dispose = import.meta.hot.accept('~user/app-files.js', (newModule) => {
-                console.log('newModule', newModule);
-                setAppFiles(newModule.default);
-                sendFileUpdateMessage();
-                // handleReload();
-            });
-        }
-        return () => dispose?.();
-    }, []);
 
     // Event listeners
     useEffect(() => {
@@ -207,25 +193,26 @@ const AppShellIframe = forwardRef(function AppShellIframe(
     );
 
     // 使用 useMemo 优化 iframe 渲染，避免不必要的重新渲染
-    const iframeElement = useMemo(() => (
-        <iframe
-            ref={iframeRef}
-            src={iframeUrl}
-            className={styles.iframe}
-            onLoad={handleIframeLoad}
-            onError={handleIframeError}
-            title={`MorphixAI App: ${appId}`}
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-storage-access-by-user-activation"
-            allow="camera; microphone; geolocation; clipboard-read; clipboard-write"
-        />
-    ), [iframeUrl, handleIframeLoad, handleIframeError, appId]);
+    const iframeElement = useMemo(
+        () => (
+            <iframe
+                ref={iframeRef}
+                src={iframeUrl}
+                className={styles.iframe}
+                onLoad={handleIframeLoad}
+                onError={handleIframeError}
+                title={`MorphixAI App: ${appId}`}
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-storage-access-by-user-activation"
+                allow="camera; microphone; geolocation; clipboard-read; clipboard-write"
+            />
+        ),
+        [iframeUrl, handleIframeLoad, handleIframeError, appId]
+    );
 
     return (
         <div className={styles.container}>
             <div className={styles.iframeWrapper}>
                 {iframeElement}
-
-
 
                 {/* Simplified error display */}
                 {error && (

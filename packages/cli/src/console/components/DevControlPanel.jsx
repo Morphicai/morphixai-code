@@ -16,7 +16,6 @@ import { computeReadOnly } from '../utils/ownership.js';
  */
 export default function DevControlPanel({
     appId,
-    isDev,
     hostClient,
     hostClientReady,
     getPreviewUrl,
@@ -37,7 +36,7 @@ export default function DevControlPanel({
         themeColor: '#6366f1'
     });
 
-    const previewUrl = usePreview(appInfo?.id ?? '', isDev);
+    const previewUrl = usePreview(appInfo?.id ?? '');
 
     // 从 appInfo 派生版本号
     const appVersion = useMemo(() => appInfo?.version ?? '1.0.0', [appInfo?.version]);

@@ -45,6 +45,10 @@ export async function devCommand(options) {
     const viteConfig = {
       configFile: false, // 禁用自动加载 vite.config.js，避免 plugin 重复
       root: consoleSrcPath,
+      define: {
+        // 将 debug 模式传递给前端应用
+        '__DEBUG_MODE__': debug,
+      },
       server: {
         port: parseInt(port),
         open: false, // 不自动打开，稍后手动打开 console
@@ -91,6 +95,9 @@ export async function devCommand(options) {
     console.log(chalk.green('🚀 Development server started!'));
     console.log();
     console.log(chalk.cyan(`  Dev Console:   http://localhost:${port}`));
+    if (debug) {
+      console.log(chalk.yellow(`  Debug Mode:    Enabled`));
+    }
     console.log();
     console.log(chalk.gray('Press Ctrl+C to stop the server'));
     

@@ -4,7 +4,7 @@ import AppShellIframe from './components/AppShellIframe';
 import DevControlPanel from './components/DevControlPanel.jsx';
 import styles from './styles/App.module.css';
 import { getProjectIdWithWarning } from './utils/projectId.js';
-import { APP_SHELL_CONFIG } from './config/appShellConfig.js';
+import { APP_SHELL_CONFIG, getBaseUrl } from './config/appShellConfig.js';
 
 export default function App() {
     const [projectInfo, setProjectInfo] = useState({ id: 'loading...', hasWarning: false });
@@ -47,7 +47,7 @@ export default function App() {
     }, []);
 
     const getPreviewUrl = useCallback(() => {
-        const baseUrl = true ? APP_SHELL_CONFIG.devBaseUrl : APP_SHELL_CONFIG.baseUrl;
+        const baseUrl = getBaseUrl();
         // 使用最新时间戳避免缓存
         return `${baseUrl}/app-runner/${projectInfo.id}?t=${Date.now()}`;
     }, [projectInfo.id]);
@@ -57,7 +57,6 @@ export default function App() {
         <AppShellIframe
             ref={appShellRef}
             appId={projectInfo.id}
-            isDev={true}
             onHostClientReady={handleHostClientReady}
             onAppLoad={handleAppLoad}
             onAppError={handleAppError}
@@ -120,7 +119,6 @@ export default function App() {
                     <div className={styles.controlPanelWrapper}>
                         <DevControlPanel
                             appId={projectInfo.id}
-                            isDev={true}
                             hostClient={hostClient}
                             hostClientReady={hostClientReady}
                             getPreviewUrl={getPreviewUrl}
