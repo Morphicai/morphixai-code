@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.3
+
+### Patch Changes
+
+- 05ce1fc: fix install prompt faild
+
 ## 1.1.2
 
 ### Patch Changes
