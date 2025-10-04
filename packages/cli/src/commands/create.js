@@ -69,11 +69,17 @@ export async function createCommand(projectName, options) {
     spinner.succeed('Project configuration complete');
     
     // 安装提示词（传递模板源路径）
+    // 提示词安装是可选的增强功能，失败不会阻止项目创建
     spinner.start('Installing AI prompts...');
-    await installPrompts(projectPath, { 
-      templatePath: templateInfo?.templatePath 
-    });
-    spinner.succeed('AI prompts installed');
+    try {
+      await installPrompts(projectPath, { 
+        templatePath: templateInfo?.templatePath 
+      });
+      spinner.succeed('AI prompts installed');
+    } catch (error) {
+      spinner.warn('AI prompts installation skipped (template files will be used)');
+      console.log(`  ${chalk.gray('Reason:')} ${error.message}`);
+    }
     
     // 询问是否安装依赖
     if (!yes) {

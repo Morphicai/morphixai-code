@@ -46,13 +46,23 @@ export async function installPrompts(projectPath, options = {}) {
           await installEditorPromptsFromRemote(projectPath, key, config);
           installedEditors.push(key);
         } catch (error) {
-          console.warn(`⚠️  Remote fetch failed for ${key}, falling back to local: ${error.message}`);
-          await installEditorPromptsFromLocal(projectPath, key, config, templatePath);
-          installedEditors.push(key);
+          console.warn(`⚠️  Remote fetch failed for ${key}: ${error.message}`);
+          // 尝试从本地安装，失败则跳过（模板已包含这些文件）
+          try {
+            await installEditorPromptsFromLocal(projectPath, key, config, templatePath);
+            installedEditors.push(key);
+          } catch (localError) {
+            console.warn(`⚠️  Local install also failed for ${key}, skipping (template files will be used)`);
+          }
         }
       } else {
-        await installEditorPromptsFromLocal(projectPath, key, config, templatePath);
-        installedEditors.push(key);
+        // 仅本地安装，失败则跳过
+        try {
+          await installEditorPromptsFromLocal(projectPath, key, config, templatePath);
+          installedEditors.push(key);
+        } catch (error) {
+          console.warn(`⚠️  Failed to install ${key}: ${error.message} (template files will be used)`);
+        }
       }
     }
   }
@@ -69,8 +79,13 @@ export async function installPrompts(projectPath, options = {}) {
       continue;
     }
     
-    await installEditorPromptsFromLocal(projectPath, editorName, config, templatePath);
-    installedEditors.push(editorName);
+    // 尝试安装，失败则跳过（模板已包含这些文件）
+    try {
+      await installEditorPromptsFromLocal(projectPath, editorName, config, templatePath);
+      installedEditors.push(editorName);
+    } catch (error) {
+      console.warn(`⚠️  Failed to install ${editorName} prompts: ${error.message} (template files will be used)`);
+    }
   }
   
   // 更新本地配置
@@ -111,9 +126,10 @@ async function installEditorPromptsFromLocal(projectPath, editorName, config, te
   const sourcePath = path.join(templateBasePath, config.path);
   const targetPath = path.join(projectPath, config.path);
   
-  // 检查模板源路径是否存在
+  // 检查模板源路径是否存在，不存在则跳过（模板复制时已包含）
   if (!await fs.pathExists(sourcePath)) {
-    throw new Error(`Template prompts not found at: ${sourcePath}`);
+    console.warn(`⚠️  Prompts source not found at: ${sourcePath}, skipping additional installation`);
+    return;
   }
   
   // 确保目标目录存在（如果 path 为空字符串，targetPath 就是项目根目录）
