@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import { createServer } from 'vite';
 import { fileURLToPath } from 'url';
 import open from 'open';
+import killPort from 'kill-port';
 import { startFileWatcher } from '../dev-server/file-watcher.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,16 @@ export async function devCommand(options) {
     }
     
     console.log(chalk.blue('Starting MorphixAI development server...'));
+    
+    // 尝试杀死占用端口的进程
+    try {
+      console.log(chalk.gray(`Checking port ${port}...`));
+      await killPort(parseInt(port));
+      console.log(chalk.gray(`Port ${port} is now available`));
+    } catch (error) {
+      // 端口未被占用或已释放，继续
+      console.log(chalk.gray(`Port ${port} is available`));
+    }
     
     // 生成初始 app-files.js
     console.log(chalk.gray('Generating app-files.js...'));
