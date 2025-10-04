@@ -101,28 +101,22 @@ morphixai template update
 
 ### 开发者视角
 
-#### 本地开发模式
-当在 monorepo 中开发时，CLI 会自动使用本地模板：
+CLI 始终从远程 GitHub 仓库获取模板（使用本地缓存优化性能）：
 
 ```bash
-cd morphixai-code/
-pnpm dev
-
-# 在 examples/ 或测试环境中
-morphixai create test-app
-# → 使用 packages/templates/react-ionic/template/
-```
-
-#### 发布后模式
-安装到全局后，CLI 从远程仓库获取模板：
-
-```bash
-npm install -g @morphixai/code
-
+# 开发模式或全局安装模式都使用相同逻辑
 morphixai create my-app
-# → 从 GitHub 下载模板
-# → 缓存到 ~/.morphixai/templates/
+# → 检查本地缓存 ~/.morphixai/templates/
+# → 如果缓存不存在或超过 24 小时，从 GitHub 下载
+# → 保存到缓存目录
+# → 复制到项目目录
 ```
+
+**优点**：
+- ✅ 开发和生产环境行为一致
+- ✅ 模板更新立即生效（清除缓存后）
+- ✅ 本地缓存提供良好性能
+- ✅ 无需 npm 发布模板包
 
 ## 📝 配置文件
 

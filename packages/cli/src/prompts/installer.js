@@ -10,15 +10,11 @@ const __dirname = path.dirname(__filename);
  * 获取模板提示词文件的源路径
  */
 function getTemplatePromptsPath(templatePath) {
-  // 如果提供了模板路径，直接使用
-  if (templatePath) {
-    return templatePath;
+  // 必须提供模板路径（从远程下载并缓存的路径）
+  if (!templatePath) {
+    throw new Error('Template path is required for prompts installation');
   }
-  
-  // 否则尝试从 monorepo 本地路径（仅用于开发）
-  const cliRoot = path.resolve(__dirname, '../..');
-  const localTemplatePath = path.join(cliRoot, '../templates/react-ionic/template');
-  return localTemplatePath;
+  return templatePath;
 }
 
 /**
