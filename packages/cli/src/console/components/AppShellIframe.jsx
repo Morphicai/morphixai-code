@@ -93,10 +93,21 @@ const AppShellIframe = forwardRef(function AppShellIframe(
                 timestamp: Date.now(),
             };
 
-            const targetOrigin = getBaseUrl();
+            // Use the iframe's actual origin from its src URL instead of hardcoded baseUrl
+            // This handles redirects and proxies correctly
+            let targetOrigin = '*';
+            try {
+                const iframeSrc = iframeRef.current.src;
+                if (iframeSrc) {
+                    const url = new URL(iframeSrc);
+                    targetOrigin = url.origin;
+                }
+            } catch (e) {
+                console.warn('Failed to parse iframe origin, using wildcard:', e);
+            }
 
             iframeRef.current.contentWindow.postMessage(message, targetOrigin);
-            console.log('🔄 Sent file update message to iframe:', message);
+            console.log('🔄 Sent file update message to iframe:', message, 'targetOrigin:', targetOrigin);
 
             // 显示提示
             setToastMessage('Code updated, notifying app to reload...');
