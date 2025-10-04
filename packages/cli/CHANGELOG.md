@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.6
+
+### Patch Changes
+
+- f5408c6: fix react-dom import error
+
 ## 1.1.5
 
 ### Patch Changes
