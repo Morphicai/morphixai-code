@@ -1,9 +1,10 @@
 {
+  "repository": "https://github.com/Morphicai/morphixai-code-templates",
+  "branch": "main",
   "templates": [
     {
       "name": "react-ionic",
-      "package": "@morphixai/template-react-ionic",
-      "version": "^1.0.0",
+      "path": "react-ionic",
       "default": true,
       "displayName": "React + Ionic",
       "description": "MorphixAI mini-app template with React and Ionic"
