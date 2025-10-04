@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@morphixai/code':
-        specifier: workspace:^1.0.0
+        specifier: workspace:*
         version: link:packages/cli
     devDependencies:
       '@changesets/cli':
