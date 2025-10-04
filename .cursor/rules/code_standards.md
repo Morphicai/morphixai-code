@@ -561,12 +561,13 @@ const chatWithAI = async (messages) => {
 ## ⚠️ 禁止事项
 15. **禁止全局错误边界**：请不要添加全局的错误边界
 16. **禁止演示代码**：生成的代码是生产可用的，不要添加开发或演示代码
-17. **禁止修改配置**：不要修改 package.json, vite.config.js 等配置文件
+17. **禁止修改配置**：不要修改 package.json, vite.config.js, index.html 等配置文件
+18. **禁止修改 `src/_dev/`**：这是 CLI 的内部目录，用于存储自动生成的文件
 
 ## 📚 实际应用示例
 参考项目中的实际实现：
-- `src/app/services/todoService.js` - 云存储服务示例
-- `src/app/components/TodoApp.jsx` - 完整组件示例
-- `src/app/styles/*.module.css` - CSS Modules 样式示例
+- `src/services/todoService.js` - 云存储服务示例
+- `src/components/TodoApp.jsx` - 完整组件示例
+- `src/styles/*.module.css` - CSS Modules 样式示例
 
 遵循这些原则可确保应用正确构建和运行，提供卓越的移动端体验。

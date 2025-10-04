@@ -1,5 +1,5 @@
 ---
-description: 文件保护规则 - 严格限制开发范围到 src/app/ 目录
+description: 文件保护规则 - 严格限制开发范围到 src/ 目录
 globs: ["**/*"]
 alwaysApply: true
 ---
@@ -9,7 +9,7 @@ alwaysApply: true
 ## ⛔ 严格开发限制
 
 ### 🚨 重要警告
-**在 MorphixAI 项目中，开发者只能在 `src/app/` 目录下进行开发工作！**
+**在 MorphixAI 项目中，开发者只能在 `src/` 目录下进行开发工作（`src/_dev/` 除外）！**
 
 这不是建议，而是**严格的硬性约束**。违反此规则可能导致项目损坏或部署失败。
 
@@ -36,7 +36,7 @@ alwaysApply: true
 
 ### ✅ 唯一允许的开发区域
 ```
-src/app/                     🟢 开发沙盒 - 允许全部操作
+src/                         🟢 开发沙盒 - 允许全部操作
 ├── app.jsx                  ✅ 应用入口 - 可以修改
 ├── components/              ✅ 组件目录 - 可以修改和扩展
 │   ├── ComponentName.jsx    ✅ 现有组件 - 可以修改
@@ -47,7 +47,8 @@ src/app/                     🟢 开发沙盒 - 允许全部操作
 ├── utils/                   ✅ 工具目录 - 可以创建
 ├── hooks/                   ✅ Hooks目录 - 可以创建
 ├── constants/               ✅ 常量目录 - 可以创建
-└── [任何新目录/文件]         ✅ 自定义内容 - 可以创建
+├── [任何新目录/文件]         ✅ 自定义内容 - 可以创建
+└── _dev/                    🔒 CLI内部目录 - 禁止修改
 ```
 
 ## 🎯 开发指导原则
@@ -55,8 +56,8 @@ src/app/                     🟢 开发沙盒 - 允许全部操作
 ### 1. 文件操作权限
 ```jsx
 // ✅ 允许的操作示例
-// 在 src/app/components/ 下创建新组件
-// 文件：src/app/components/NewFeature.jsx
+// 在 src/components/ 下创建新组件
+// 文件：src/components/NewFeature.jsx
 import React from 'react';
 import { IonCard } from '@ionic/react';
 import styles from '../styles/NewFeature.module.css';
@@ -69,8 +70,8 @@ export default function NewFeature() {
     );
 }
 
-// ✅ 在 src/app/styles/ 下创建对应样式
-// 文件：src/app/styles/NewFeature.module.css
+// ✅ 在 src/styles/ 下创建对应样式
+// 文件：src/styles/NewFeature.module.css
 .container {
     padding: 16px;
 }
@@ -81,11 +82,12 @@ export default function NewFeature() {
 // ❌ 绝对禁止：尝试修改项目配置
 // 不要尝试修改 package.json
 // 不要尝试修改 vite.config.js
+// 不要尝试修改 index.html
 // 不要尝试创建根目录文件
 
-// ❌ 绝对禁止：在 src/app/ 外创建文件
-// 不要在 src/ 根目录下创建文件
-// 不要在 src/_dev/ 下创建或修改文件
+// ❌ 绝对禁止：在 src/ 外创建文件或修改 src/_dev/
+// 不要在项目根目录下创建文件
+// 不要在 src/_dev/ 下创建或修改文件（CLI 内部使用）
 // 不要在 public/ 下添加资源
 ```
 
@@ -98,8 +100,8 @@ export default function NewFeature() {
 
 // ✅ 正确做法
 // 使用已有的依赖：React, @ionic/react, ionicons
-// 在 src/app/ 下实现所有功能
-// 如需新依赖，请联系项目管理员
+// 在 src/ 下实现所有功能
+// 使用 remoteImport 动态加载外部库（如需要）
 ```
 
 ## 🔧 开发工作流
@@ -107,7 +109,7 @@ export default function NewFeature() {
 ### 标准开发流程
 1. **进入开发目录**
    ```bash
-   cd src/app/
+   cd src/
    ```
 
 2. **创建新功能**
@@ -121,14 +123,14 @@ export default function NewFeature() {
 
 3. **修改现有文件**
    ```bash
-   # 只修改 src/app/ 下的文件
+   # 只修改 src/ 下的文件（_dev/ 除外）
    # 如：app.jsx, components/*.jsx, styles/*.css
    ```
 
 ### 目录扩展规范
 ```
-# 可以在 src/app/ 下创建的新目录结构
-src/app/
+# 可以在 src/ 下创建的新目录结构
+src/
 ├── components/           # 组件
 │   ├── common/          # 通用组件
 │   ├── forms/           # 表单组件
@@ -141,7 +143,9 @@ src/app/
 ├── constants/           # 常量定义 ✅ 可创建
 ├── services/            # 服务层 ✅ 可创建
 ├── types/               # TypeScript类型 ✅ 可创建
-└── assets/              # 应用资源 ✅ 可创建
+├── assets/              # 应用资源 ✅ 可创建
+└── _dev/                # CLI 内部目录 ❌ 禁止修改
+    └── app-files.js     # 自动生成的虚拟文件系统
 ```
 
 ## 🚨 违规后果
@@ -153,7 +157,7 @@ src/app/
 4. **可能导致版本控制冲突**
 
 ### 正确的心态：
-- `src/app/` 是你的**完整开发沙盒**
+- `src/` 是你的**完整开发沙盒**（`_dev/` 除外）
 - 在这个目录下，你拥有**完全的创作自由**
 - 这个限制保护项目稳定性，不限制开发能力
 
@@ -163,12 +167,15 @@ src/app/
 A: 联系项目管理员，不要自行修改配置文件。
 
 **Q: 我需要添加静态资源怎么办？**
-A: 在 `src/app/assets/` 目录下添加（如果不存在则创建）。
+A: 在 `src/assets/` 目录下添加（如果不存在则创建）。
 
 **Q: 我需要修改构建配置怎么办？**
-A: 联系项目管理员，开发者不应修改构建配置。
+A: 不需要！通过 `morphixai dev` 和 `morphixai build` CLI 命令自动处理。
 
 **Q: 我想创建新的目录结构怎么办？**
-A: 在 `src/app/` 下自由创建任何目录结构。
+A: 在 `src/` 下自由创建任何目录结构（不要修改 `_dev/`）。
 
-记住：`src/app/` 是你的王国，在这里你可以实现任何功能！🏰
+**Q: `src/_dev/` 目录是什么？**
+A: 这是 MorphixAI CLI 的内部目录，用于存储自动生成的文件（如 `app-files.js`），请勿修改。
+
+记住：`src/` 是你的王国，在这里你可以实现任何功能！🏰

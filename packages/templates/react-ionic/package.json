@@ -1,0 +1,24 @@
+{
+  "name": "@morphixai/template-react-ionic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MorphixAI mini-app template with React and Ionic",
+  "main": "meta.json",
+  "scripts": {
+    "test": "echo \"No tests yet\"",
+    "lint": "echo \"No linting yet\""
+  },
+  "files": [
+    "template",
+    "meta.json"
+  ],
+  "keywords": [
+    "morphixai",
+    "template",
+    "react",
+    "ionic",
+    "mobile"
+  ],
+  "author": "MorphixAI",
+  "license": "MIT"
+}

@@ -75,12 +75,18 @@ npm install
 
 ## 🗂 프로젝트 구조
 ```
-src/
-  app/                # 미니 앱 소스 코드 (여기서 시작)
-  _dev/               # 개발 셸, 유틸리티, 예제, 설정
-public/               # 정적 자산
-scripts/              # 개발 도우미 (watch, restore, id 생성)
-vite.config.js        # 개발 서버 설정 (기본 포트 8812)
+my-app/
+├── src/                    # 미니 앱 소스 코드
+│   ├── app.jsx            # 애플리케이션 진입점
+│   ├── components/        # React 컴포넌트
+│   ├── styles/            # CSS 모듈
+│   ├── services/          # 서비스 레이어 (선택사항)
+│   ├── hooks/             # 커스텀 훅 (선택사항)
+│   └── utils/             # 유틸리티 함수 (선택사항)
+├── _dev/                  # 개발 도구 (자동 생성)
+├── docs/                  # 문서
+├── package.json           # 의존성 및 스크립트
+└── project-config.json    # 프로젝트 설정 및 ID
 ```
 
 ## 🤖 MorphixAI란?
@@ -201,17 +207,16 @@ AI: 추가하겠습니다:
 - 사용한 AI에 대해서만 지불
 
 ## 🔧 도움 받기
-- 개발자 문서: [DEVELOPER.md](../DEVELOPER.md)
 - 공식 사양: [MorphixAI 개발 사양](https://app-shell.focusbe.com/docs/app-development-specification.md)
-- 커뮤니티: GitHub Issues
+- 커뮤니티: [GitHub Issues](https://github.com/Morphicai/morphixai-code/issues)
 - AI 어시스턴트: 에디터에서 직접 질문
 - 이메일: `contact@baibian.app`
 
 ## 📖 추가 리소스
-- 개발자 문서 — [DEVELOPER.md](../DEVELOPER.md)
-- 완전한 개발 사양 — [CLAUDE.md](../CLAUDE.md)
-- 프로젝트 기술 문서 — [docs/technical/project-overview.md](./technical/project-overview.md)
-- 개발 가이드라인 — [docs/requirements/development-guidelines.md](./requirements/development-guidelines.md)
+- 기여 가이드 — [CONTRIBUTING.md](../CONTRIBUTING.md)
+- 빠른 시작 가이드 — [QUICKSTART_RELEASE.md](../QUICKSTART_RELEASE.md)
+- CLI 프롬프트 가이드 — [CLI_PROMPTS_GUIDE.md](../CLI_PROMPTS_GUIDE.md)
+- 원격 프롬프트 가이드 — [REMOTE_PROMPTS_GUIDE.md](../REMOTE_PROMPTS_GUIDE.md)
 
 ## 🗺️ 로드맵
 - [ ] 전체 화면 모드 지원

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "source": "mixed",
+  "lastUpdated": "2025-01-01T00:00:00Z",
+  "editors": {
+    "cursor": {
+      "enabled": true,
+      "version": "1.0.0",
+      "path": ""
+    },
+    "claude": {
+      "enabled": true,
+      "version": "1.0.0",
+      "path": ""
+    },
+    "readme": {
+      "enabled": true,
+      "version": "1.0.0",
+      "path": ""
+    },
+    "docs": {
+      "enabled": true,
+      "version": "1.0.0",
+      "path": "docs",
+      "source": "remote"
+    }
+  }
+}

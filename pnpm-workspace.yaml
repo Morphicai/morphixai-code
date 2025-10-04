@@ -1,0 +1,5 @@
+packages:
+  - 'packages/*'
+  - 'packages/templates/*'
+  - 'demo_app'
+  - 'examples/*'

@@ -74,12 +74,18 @@ npm install
 
 ## 🗂 プロジェクト構造
 ```
-src/
-  app/                # ミニアプリのソースコード（ここから開始）
-  _dev/               # 開発シェル、ユーティリティ、例、設定
-public/               # 静的アセット
-scripts/              # 開発ヘルパー（watch、restore、ID生成）
-vite.config.js        # 開発サーバー設定（デフォルトはポート8812）
+my-app/
+├── src/                    # ミニアプリのソースコード
+│   ├── app.jsx            # アプリケーションエントリーポイント
+│   ├── components/        # React コンポーネント
+│   ├── styles/            # CSS モジュール
+│   ├── services/          # サービスレイヤー（オプション）
+│   ├── hooks/             # カスタムフック（オプション）
+│   └── utils/             # ユーティリティ関数（オプション）
+├── _dev/                  # 開発ツール（自動生成）
+├── docs/                  # ドキュメント
+├── package.json           # 依存関係とスクリプト
+└── project-config.json    # プロジェクト設定とID
 ```
 
 ## 🤖 MorphixAIとは？
@@ -200,17 +206,16 @@ AI: 追加します：
 - 使用したAIのみに対して支払い
 
 ## 🔧 ヘルプ
-- 開発者ドキュメント：[DEVELOPER.md](../DEVELOPER.md)
 - 公式仕様：[MorphixAI開発仕様](https://app-shell.focusbe.com/docs/app-development-specification.md)
-- コミュニティ：GitHub Issues
+- コミュニティ：[GitHub Issues](https://github.com/Morphicai/morphixai-code/issues)
 - AIアシスタント：エディタで直接質問
 - メール：`contact@baibian.app`
 
 ## 📖 その他のリソース
-- 開発者ドキュメント — [DEVELOPER.md](../DEVELOPER.md)
-- 完全な開発仕様 — [CLAUDE.md](../CLAUDE.md)
-- プロジェクト技術ドキュメント — [docs/technical/project-overview.md](./technical/project-overview.md)
-- 開発ガイドライン — [docs/requirements/development-guidelines.md](./requirements/development-guidelines.md)
+- コントリビューションガイド — [CONTRIBUTING.md](../CONTRIBUTING.md)
+- クイックスタートガイド — [QUICKSTART_RELEASE.md](../QUICKSTART_RELEASE.md)
+- CLIプロンプトガイド — [CLI_PROMPTS_GUIDE.md](../CLI_PROMPTS_GUIDE.md)
+- リモートプロンプトガイド — [REMOTE_PROMPTS_GUIDE.md](../REMOTE_PROMPTS_GUIDE.md)
 
 ## 🗺️ ロードマップ
 - [ ] フルスクリーンモードのサポート

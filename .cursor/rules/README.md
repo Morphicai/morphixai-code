@@ -5,12 +5,12 @@
 ## 🚨 重要：严格开发限制
 
 ### ⛔ 硬性约束
-**所有开发活动必须严格限制在 `src/app/` 目录内！**
+**所有开发活动必须严格限制在 `src/` 目录内（`src/_dev/` 除外）！**
 
-- ✅ **允许**：在 `src/app/` 及其子目录下创建、修改任何文件
-- ❌ **严禁**：修改 `src/app/` 目录外的任何文件
+- ✅ **允许**：在 `src/` 及其子目录下创建、修改任何文件（除 `_dev/`）
+- ❌ **严禁**：修改 `src/` 目录外的任何文件
 - ❌ **严禁**：修改项目配置文件（package.json, vite.config.js 等）
-- ❌ **严禁**：修改 `src/_dev/` 目录内容
+- ❌ **严禁**：修改 `src/_dev/` 目录内容（CLI 内部使用）
 
 ## 📋 规则文件说明
 
@@ -62,34 +62,36 @@
 ## 🎯 快速开始
 
 ### 1. 📍 确认开发区域
-**只能在 `src/app/` 目录下开发！**
+**只能在 `src/` 目录下开发（`src/_dev/` 除外）！**
 ```
 ✅ 允许修改的区域：
-src/app/
+src/
 ├── app.jsx              # 应用入口文件
 ├── components/          # 组件目录
 │   └── *.jsx           # React 组件
-└── styles/             # 样式目录
-    └── *.module.css    # CSS 模块文件
+├── styles/             # 样式目录
+│   └── *.module.css    # CSS 模块文件
+└── _dev/               # 🔒 CLI 内部目录 - 禁止修改
+    └── app-files.js    # 自动生成
 
 ❌ 禁止修改的区域：
 ├── package.json         # 🔒 项目配置
-├── vite.config.js      # 🔒 构建配置
-├── src/_dev/           # 🔒 开发辅助
+├── vite.config.js      # 🔒 构建配置（如有）
+├── index.html          # 🔒 HTML 入口（如有）
 └── 其他根目录文件       # 🔒 系统文件
 ```
 
 ### 2. ⚠️ 重要提醒
 **不要尝试修改以下文件：**
 - ❌ package.json
-- ❌ vite.config.js  
-- ❌ index.html
-- ❌ src/_dev/ 目录下的任何文件
+- ❌ vite.config.js（如有）
+- ❌ index.html（如有）
+- ❌ src/_dev/ 目录下的任何文件（CLI 自动生成）
 - ❌ 任何根目录配置文件
 
 ### 3. 标准应用入口模板
 ```jsx
-// src/app/app.jsx
+// src/app.jsx
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import { PageHeader } from '@morphixai/components';
@@ -118,11 +120,11 @@ export default function App() {
 
 ## ⚠️ 重要提醒
 
-1. **入口文件**: 必须使用 `app.jsx` 作为应用入口
-2. **目录结构**: 应用代码必须放在 `src/app/` 目录下
+1. **入口文件**: 必须使用 `src/app.jsx` 作为应用入口
+2. **目录结构**: 应用代码放在 `src/` 目录下（不要修改 `_dev/`）
 3. **CSS 模块**: 必须使用 `.module.css` 后缀的样式文件
 4. **依赖版本**: 确保 React 19.0.0 和 Ionic 8.6.2 的兼容性
-5. **平台兼容**: 确保应用与 MorphixAI App Runner 兼容
+5. **CLI 工具**: 使用 `morphixai dev` 和 `morphixai build` 命令
 
 ## 🔧 使用说明
 
