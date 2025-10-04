@@ -69,6 +69,15 @@ export async function devCommand(options) {
         },
       },
       resolve: {
+        // 强制去重这些包，确保只使用一个版本（从 @morphixai/code/node_modules）
+        dedupe: [
+          'react',
+          'react-dom',
+          '@ionic/react',
+          '@ionic/react-router',
+          'react-router-dom',
+          'ionicons'
+        ],
         alias: {
           // console 项目的别名
           '@console': consoleSrcPath,
@@ -79,6 +88,18 @@ export async function devCommand(options) {
           '~user/app-files.js': userAppFilesPath,
           '~user/project-config.json': userProjectConfigPath,
         },
+      },
+      // 预构建优化，确保这些包被正确处理
+      optimizeDeps: {
+        include: [
+          'react',
+          'react-dom',
+          'react-dom/client',
+          '@ionic/react',
+          '@ionic/react-router',
+          'react-router-dom',
+          'ionicons/icons'
+        ],
       },
       plugins: [
         // React plugin
