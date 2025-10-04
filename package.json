@@ -16,7 +16,7 @@
         "lint": "pnpm --filter \"./packages/**\" run lint",
         "changeset": "changeset",
         "version-packages": "changeset version",
-        "release": "pnpm build && changeset publish"
+        "release": "pnpm build && changeset publish --provenance"
     },
     "keywords": [
         "morphixai",
