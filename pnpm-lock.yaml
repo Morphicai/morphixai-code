@@ -13,6 +13,12 @@ importers:
       '@changesets/cli': 2.29.7
       turbo: 1.13.4
 
+  examples/demo-app:
+    specifiers:
+      '@morphixai/code': ^1.0.0
+    devDependencies:
+      '@morphixai/code': link:../../packages/cli
+
   packages/cli:
     specifiers:
       '@ionic/react': 8.6.2
