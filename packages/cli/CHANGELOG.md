@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.7
+
+### Patch Changes
+
+- 040a025: fix dev error
+
 ## 1.1.6
 
 ### Patch Changes
