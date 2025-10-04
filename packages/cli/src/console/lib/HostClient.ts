@@ -218,7 +218,7 @@ export interface TypedHostClient extends IHostClient, ModuleCapabilities {
 }
 
 // 请求超时时间
-const REQUEST_TIMEOUT = 30000; // 30秒
+const REQUEST_TIMEOUT = 60000; // 30秒
 
 // 请求ID生成器
 let requestId = 0;
