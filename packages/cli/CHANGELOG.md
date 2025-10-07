@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.11
+
+### Patch Changes
+
+- 18d84fa: support more appicon
+
 ## 1.1.10
 
 ### Patch Changes
