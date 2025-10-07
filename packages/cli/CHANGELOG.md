@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.10
+
+### Patch Changes
+
+- 02ba360: support resotre command
+
 ## 1.1.9
 
 ### Patch Changes
