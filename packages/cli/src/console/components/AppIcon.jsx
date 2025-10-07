@@ -1,6 +1,7 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
 import {
+    // 已有图标
     apps,
     grid,
     briefcase,
@@ -15,10 +16,66 @@ import {
     folder,
     settings,
     checkmark,
-    playCircle
+    playCircle,
+    eye,
+    bicycle,
+    barbell,
+    // 导航类
+    home,
+    arrowBack,
+    arrowForward,
+    menu,
+    close,
+    chevronDown,
+    chevronUp,
+    // 操作类
+    add,
+    remove,
+    create,
+    trash,
+    search,
+    refresh,
+    share,
+    download,
+    // 文件类
+    document,
+    image,
+    videocam,
+    camera,
+    musicalNotes,
+    // 通信类
+    mail,
+    send,
+    call,
+    star,
+    // 用户类
+    person,
+    people,
+    personCircle,
+    logIn,
+    logOut,
+    key,
+    // 设置类
+    helpCircle,
+    informationCircle,
+    warning,
+    checkmarkCircle,
+    // 媒体类
+    play,
+    pause,
+    stop,
+    volumeHigh,
+    volumeLow,
+    volumeMute,
+    // 工具类
+    calculator,
+    time,
+    qrCode,
+    flashlight
 } from 'ionicons/icons';
 
 export const AVAILABLE_ICONS = [
+    // 原有图标
     'apps',
     'grid',
     'briefcase',
@@ -33,6 +90,61 @@ export const AVAILABLE_ICONS = [
     'folder',
     'settings',
     'checkmark',
+    'eye',
+    'bicycle',
+    'barbell',
+    // 导航类
+    'home',
+    'arrow-back',
+    'arrow-forward',
+    'menu',
+    'close',
+    'chevron-down',
+    'chevron-up',
+    // 操作类
+    'add',
+    'remove',
+    'create',
+    'trash',
+    'search',
+    'refresh',
+    'share',
+    'download',
+    // 文件类
+    'document',
+    'image',
+    'videocam',
+    'camera',
+    'musical-notes',
+    // 通信类
+    'mail',
+    'send',
+    'call',
+    'star',
+    // 用户类
+    'person',
+    'people',
+    'person-circle',
+    'log-in',
+    'log-out',
+    'key',
+    // 设置类
+    'help-circle',
+    'information-circle',
+    'warning',
+    'checkmark-circle',
+    // 媒体类
+    'play',
+    'pause',
+    'stop',
+    'volume-high',
+    'volume-low',
+    'volume-mute',
+    // 工具类
+    'calculator',
+    'time',
+    'qr-code',
+    'flashlight',
 ];
 
 export const THEME_COLORS = [
@@ -49,7 +161,7 @@ export const THEME_COLORS = [
 ];
 
 const NAME_TO_ICON = {
-    // direct
+    // 原有图标 - direct
     apps,
     grid,
     briefcase,
@@ -62,12 +174,82 @@ const NAME_TO_ICON = {
     folder,
     settings,
     checkmark,
+    eye,
+    bicycle,
+    barbell,
+    // 导航类 - direct
+    home,
+    menu,
+    close,
+    // 操作类 - direct
+    add,
+    remove,
+    create,
+    trash,
+    search,
+    refresh,
+    share,
+    download,
+    // 文件类 - direct
+    document,
+    image,
+    videocam,
+    camera,
+    // 通信类 - direct
+    mail,
+    send,
+    call,
+    star,
+    // 用户类 - direct
+    person,
+    people,
+    key,
+    // 设置类 - direct
+    warning,
+    // 媒体类 - direct
+    play,
+    pause,
+    stop,
+    // 工具类 - direct
+    calculator,
+    time,
+    flashlight,
     // kebab-case aliases
     'document-text': documentText,
     'checkmark-done': checkmarkDone,
+    'arrow-back': arrowBack,
+    'arrow-forward': arrowForward,
+    'chevron-down': chevronDown,
+    'chevron-up': chevronUp,
+    'musical-notes': musicalNotes,
+    'person-circle': personCircle,
+    'log-in': logIn,
+    'log-out': logOut,
+    'help-circle': helpCircle,
+    'information-circle': informationCircle,
+    'checkmark-circle': checkmarkCircle,
+    'volume-high': volumeHigh,
+    'volume-low': volumeLow,
+    'volume-mute': volumeMute,
+    'qr-code': qrCode,
     // camelCase
     documentText,
     checkmarkDone,
+    arrowBack,
+    arrowForward,
+    chevronDown,
+    chevronUp,
+    musicalNotes,
+    personCircle,
+    logIn,
+    logOut,
+    helpCircle,
+    informationCircle,
+    checkmarkCircle,
+    volumeHigh,
+    volumeLow,
+    volumeMute,
+    qrCode,
 };
 
 export default function AppIcon({ name = 'apps', color = '#6366f1', size = 48, className = '', background = true, iconColor = '#ffffff' }) {
