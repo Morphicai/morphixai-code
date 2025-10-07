@@ -7,6 +7,7 @@ import { devCommand } from '../src/commands/dev.js';
 import { buildCommand } from '../src/commands/build.js';
 import { promptsCommand } from '../src/commands/prompts.js';
 import { templateCommand } from '../src/commands/template.js';
+import { restoreCommand } from '../src/commands/restore.js';
 
 const program = new Command();
 
@@ -38,6 +39,14 @@ program
   .option('-o, --outDir <dir>', 'Output directory', 'dist')
   .option('--sourcemap', 'Generate source maps')
   .action(buildCommand);
+
+program
+  .command('restore')
+  .description('Restore source files from app-files.json')
+  .option('-s, --source <path>', 'Source JSON file path (default: _dev/app-files.json)')
+  .option('-y, --yes', 'Skip confirmation prompt')
+  .option('--debug', 'Enable debug mode')
+  .action(restoreCommand);
 
 const promptsCmd = program
   .command('prompts')
