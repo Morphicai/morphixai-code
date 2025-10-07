@@ -38,6 +38,6 @@
         "pnpm": ">=7.0.0"
     },
     "dependencies": {
-        "@morphixai/code": "workspace:^1.0.0"
+        "@morphixai/code": "workspace:*"
     }
 }

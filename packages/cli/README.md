@@ -107,6 +107,47 @@ morphixai build --outDir build
 morphixai build --sourcemap
 ```
 
+### `restore` - Restore Source Files
+
+```bash
+morphixai restore [options]
+
+Options:
+  -s, --source <path>  Source JSON file path (default: _dev/app-files.json)
+  -y, --yes            Skip confirmation prompt
+  --debug              Enable debug mode
+```
+
+**Examples:**
+```bash
+# Restore from _dev/app-files.json (with confirmation)
+morphixai restore
+
+# Restore from dist/app-files.json
+morphixai restore --source dist/app-files.json
+
+# Restore from remote URL
+morphixai restore --source https://example.com/app-files.json
+
+# Skip confirmation prompt
+morphixai restore --yes
+
+# Restore from custom path
+morphixai restore --source /path/to/app-files.json
+```
+
+**Features:**
+- ✅ Supports local file paths (relative or absolute)
+- ✅ Supports remote URLs (http:// or https://)
+- ✅ Automatic download from remote sources
+- ✅ Interactive confirmation before overwriting files
+
+**Notes:**
+- Only `.json` files are supported (both local and remote)
+- Metadata files (`app-files.js`, `app-files.json`) will be automatically excluded from restore
+- Remote files are downloaded to a temporary location and cleaned up after restore
+- **⚠️ Warning:** This command will overwrite existing files in the `src/` directory. Always confirm the changes before proceeding.
+
 ### `template` - Template Management
 
 ```bash
