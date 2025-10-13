@@ -1,5 +1,11 @@
 # @morphixai/code
 
+## 1.1.12
+
+### Patch Changes
+
+- e1355a1: change dev url
+
 ## 1.1.11
 
 ### Patch Changes
