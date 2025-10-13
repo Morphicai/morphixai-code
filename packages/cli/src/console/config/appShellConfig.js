@@ -12,6 +12,15 @@ export const APP_SHELL_CONFIG = {
  */
 export function getBaseUrl() {
     // 通过 Vite 的 define 注入的全局变量
+    const overrideBaseUrl =
+        typeof __APP_SHELL_BASE_URL__ !== 'undefined' && __APP_SHELL_BASE_URL__
+            ? __APP_SHELL_BASE_URL__
+            : null;
+
+    if (overrideBaseUrl) {
+        return overrideBaseUrl;
+    }
+
     const isDebugMode = typeof __DEBUG_MODE__ !== 'undefined' ? __DEBUG_MODE__ : false;
     return isDebugMode ? APP_SHELL_CONFIG.devBaseUrl : APP_SHELL_CONFIG.baseUrl;
 }

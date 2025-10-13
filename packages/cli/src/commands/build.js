@@ -7,7 +7,11 @@ import { generateAppFiles } from '../utils/app-files.js';
 
 export async function buildCommand(options) {
   try {
-    const { outDir = 'dist', sourcemap = false } = options;
+    const {
+      outDir = 'dist',
+      sourcemap = false,
+      baseUrl,
+    } = options;
     const projectPath = process.cwd();
     
     // 检查是否在 MorphixAI 项目中
@@ -34,6 +38,10 @@ export async function buildCommand(options) {
     // 构建配置
     const buildConfig = {
       root: projectPath,
+      define: {
+        '__DEBUG_MODE__': false,
+        '__APP_SHELL_BASE_URL__': baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null,
+      },
       build: {
         outDir,
         sourcemap,

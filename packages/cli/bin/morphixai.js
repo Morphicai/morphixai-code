@@ -30,6 +30,7 @@ program
   .option('-p, --port <port>', 'Port number', '8812')
   .option('--console-path <path>', 'Console path', '/__console')
   .option('--debug', 'Enable debug mode')
+  .option('--base-url <url>', 'Override App Shell base URL')
   .option('--no-open', 'Do not automatically open browser')
   .action(devCommand);
 
@@ -38,6 +39,7 @@ program
   .description('Build the application for production')
   .option('-o, --outDir <dir>', 'Output directory', 'dist')
   .option('--sourcemap', 'Generate source maps')
+  .option('--base-url <url>', 'Override App Shell base URL')
   .action(buildCommand);
 
 program
