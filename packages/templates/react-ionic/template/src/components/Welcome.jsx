@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
-import { downloadOutline, globeOutline, chatbubbleEllipsesOutline, sparklesOutline, deviceMobileOutline } from 'ionicons/icons';
+import { downloadOutline, globeOutline } from 'ionicons/icons';
 import styles from '../styles/Welcome.module.css';
 
 /**
