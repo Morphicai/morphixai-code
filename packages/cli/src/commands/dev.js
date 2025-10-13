@@ -12,7 +12,13 @@ const __dirname = path.dirname(__filename);
 
 export async function devCommand(options) {
   try {
-    const { port = 8812, consolePath = '/__console', debug = false, open: shouldOpen = true } = options;
+  const {
+    port = 8812,
+    consolePath = '/__console',
+    debug = false,
+    open: shouldOpen = true,
+    baseUrl,
+  } = options;
     const projectPath = process.cwd();
     
     // 检查是否在 MorphixAI 项目中
@@ -60,6 +66,7 @@ export async function devCommand(options) {
       define: {
         // 将 debug 模式传递给前端应用
         '__DEBUG_MODE__': debug,
+        '__APP_SHELL_BASE_URL__': baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null,
       },
       server: {
         port: parseInt(port),
@@ -130,6 +137,9 @@ export async function devCommand(options) {
     console.log(chalk.green('🚀 Development server started!'));
     console.log();
     console.log(chalk.cyan(`  Dev Console:   ${serverUrl}`));
+    if (baseUrl || process.env.MORPHIXAI_APP_SHELL_BASE_URL) {
+      console.log(chalk.cyan(`  Base URL:      ${baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL}`));
+    }
     if (debug) {
       console.log(chalk.yellow(`  Debug Mode:    Enabled`));
     }

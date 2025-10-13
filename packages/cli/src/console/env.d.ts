@@ -5,4 +5,5 @@
  * 这些变量通过 Vite 的 define 选项注入
  */
 declare const __DEBUG_MODE__: boolean;
+declare const __APP_SHELL_BASE_URL__: string | undefined;
 
