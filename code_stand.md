@@ -43,6 +43,91 @@ utils/
   ├── utilB.js
 ```
 
+## Ionic 页面结构规范（重要）
+
+### 核心要求
+
+**所有页面组件都必须遵循 Ionic 的标准页面结构**：
+
+1. **`IonPage` 是必需的**：每个页面组件必须使用 `IonPage` 作为最外层容器
+2. **页面头部**：使用 `PageHeader` 组件（推荐）或 `IonHeader` + `IonToolbar` + `IonTitle` 组合
+3. **内容区域**：使用 `IonContent` 包裹页面内容
+
+### 标准页面结构模板
+
+**推荐方式（使用 PageHeader）**：
+```jsx
+import React from 'react';
+import { IonPage, IonContent } from '@ionic/react';
+import { PageHeader } from '@morphixai/components';
+
+export default function MyPage() {
+  return (
+    <IonPage>
+      <PageHeader title="页面标题" />
+      <IonContent>
+        {/* 页面内容 */}
+      </IonContent>
+    </IonPage>
+  );
+}
+```
+
+**备选方式（用于模态弹窗等特殊场景）**：
+```jsx
+import React from 'react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
+
+export default function ModalPage() {
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>模态标题</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        {/* 模态内容 */}
+      </IonContent>
+    </IonPage>
+  );
+}
+```
+
+### 为什么必须使用 IonPage？
+
+`IonPage` 组件是 Ionic 框架的核心容器，它负责：
+- 管理页面的生命周期
+- 处理页面转场动画
+- 正确布局页面内容（头部、内容区、底部导航）
+- 确保内容区域正确占据可用空间并支持滚动
+
+**❌ 错误示例（缺少 IonPage）**：
+```jsx
+// 错误：直接使用 div 会导致布局问题
+export default function MyPage() {
+  return (
+    <div>
+      <PageHeader title="标题" />
+      <IonContent>内容</IonContent>
+    </div>
+  );
+}
+```
+
+**✅ 正确示例**：
+```jsx
+// 正确：使用 IonPage 作为最外层容器
+export default function MyPage() {
+  return (
+    <IonPage>
+      <PageHeader title="标题" />
+      <IonContent>内容</IonContent>
+    </IonPage>
+  );
+}
+```
+
 ## 内置库支持
 
 ### 版本信息
@@ -169,7 +254,7 @@ import React from 'react';
 import {
   IonTabs,
   IonTab,
-  IonToolbar,
+  IonPage,
   IonTabBar,
   IonTabButton,
   IonContent,
@@ -182,20 +267,20 @@ function HomeTabPage() {
   return (
     <IonTabs>
       <IonTab tab="home">
-        <div id="home-page">
+        <IonPage>
           <PageHeader title="Listen now" />
           <IonContent>
             <div className="example-content">Listen now content</div>
           </IonContent>
-        </div>
+        </IonPage>
       </IonTab>
       <IonTab tab="library">
-        <div id="library-page">
+        <IonPage>
           <PageHeader title="Library" />
           <IonContent>
             <div className="example-content">Library content</div>
           </IonContent>
-        </div>
+        </IonPage>
       </IonTab>
 
       {/* Tab Bar 自动处理安全区域和选中高亮 */}
@@ -217,7 +302,8 @@ export default HomeTabPage;
 ```
 
 **Tab 布局最佳实践**：
-- 每个 Tab 内容区域使用独立的 `PageHeader` 设置不同标题
+- **每个 Tab 必须使用 `IonPage` 作为最外层容器**，这是 Ionic 框架的核心要求
+- 每个 Tab 使用 `PageHeader` 组件设置独立的标题（推荐）
 - `IonTabBar` 自动处理安全区域适配和选中状态高亮
 - Tab 数量建议控制在 2-5 个之间，确保良好的用户体验
 
@@ -485,9 +571,10 @@ AppSdk.camera.takePicture()
 在生成应用时，请确保：
 
 1. 使用 `app.jsx` 作为入口文件
-2. 使用标准 ES6 `import` 语句导入所有库，优先使用内置库
-3. **样式优先级**：CSS Modules > 全局样式
-4. 遵循 React 和 Ionic 的最佳实践
+2. **【必需】所有页面组件必须使用 `IonPage` 作为最外层容器**，使用 `PageHeader` 组件设置页面头部（推荐），使用 `IonContent` 包裹页面内容。模态弹窗等特殊场景可使用自定义 Header
+3. 使用标准 ES6 `import` 语句导入所有库，优先使用内置库
+4. **样式优先级**：CSS Modules > 全局样式
+5. 遵循 React 和 Ionic 的最佳实践
 6. 利用 MorphixAI 组件库提供的通用组件
 7. **图标使用**：使用常用图标列表中的 ionicons，根据状态选择合适的样式（默认/轮廓/锐角）
 8. **优先使用原生日期选择器**：使用 `<input type="date" />` 而不是 `<IonDatetime />`
@@ -498,7 +585,7 @@ AppSdk.camera.takePicture()
 13. 在容易出错的地方添加 try-catch 语句，使用 `@morphixai/lib` 的 `reportError` 上报错误
 14. 使用 PageHeader 组件时，直接使用 `<PageHeader title="标题" />`，返回按钮和右侧功能按钮自动处理
 15. **路由使用**：基于 React Router v5.3.4，使用 `Switch` 而不是 `Routes`，使用 `useHistory` 而不是 `useNavigate`，使用 `component` 属性而不是 `element` 属性
-16. **Tab 布局规范**：多功能模块应用建议使用 Tab 布局，必须考虑安全区域适配和选中状态高亮
+16. **Tab 布局规范**：多功能模块应用建议使用 Tab 布局，每个 Tab 内部必须使用 `IonPage` 作为容器，必须考虑安全区域适配和选中状态高亮
 17. **移动端优先设计**：应用必须完美适配移动端，提供接近原生 APP 的用户体验
 
 遵循这些规范可确保应用正确构建和运行，提供卓越的移动端体验。
