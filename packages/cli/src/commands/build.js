@@ -40,7 +40,7 @@ export async function buildCommand(options) {
       root: projectPath,
       define: {
         '__DEBUG_MODE__': false,
-        '__APP_SHELL_BASE_URL__': baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null,
+        '__APP_SHELL_BASE_URL__': JSON.stringify(baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null),
       },
       build: {
         outDir,

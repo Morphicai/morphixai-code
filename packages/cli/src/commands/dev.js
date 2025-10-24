@@ -66,7 +66,7 @@ export async function devCommand(options) {
       define: {
         // 将 debug 模式传递给前端应用
         '__DEBUG_MODE__': debug,
-        '__APP_SHELL_BASE_URL__': baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null,
+        '__APP_SHELL_BASE_URL__': JSON.stringify(baseUrl ?? process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null),
       },
       server: {
         port: parseInt(port),

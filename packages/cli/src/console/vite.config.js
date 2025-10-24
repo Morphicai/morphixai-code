@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   define: {
     // Define __DEBUG_MODE__ based on the environment
     __DEBUG_MODE__: mode === 'development',
-    __APP_SHELL_BASE_URL__: process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null
+    __APP_SHELL_BASE_URL__: JSON.stringify(process.env.MORPHIXAI_APP_SHELL_BASE_URL ?? null)
   },
   build: {
     outDir: 'dist',

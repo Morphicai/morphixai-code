@@ -19,6 +19,24 @@ importers:
         specifier: ^1.10.0
         version: 1.13.4
 
+  examples/alex:
+    devDependencies:
+      '@morphixai/code':
+        specifier: ^1.1.10
+        version: link:../../packages/cli
+
+  examples/app2:
+    devDependencies:
+      '@morphixai/code':
+        specifier: ^1.1.10
+        version: link:../../packages/cli
+
+  examples/demo-app:
+    devDependencies:
+      '@morphixai/code':
+        specifier: ^1.1.8
+        version: link:../../packages/cli
+
   packages/cli:
     dependencies:
       '@ionic/react':
