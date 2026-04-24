@@ -6,7 +6,7 @@
 
 ### 📲 MorphixAI는 어디서 체험할 수 있나요?
 - **iOS**: App Store에서 "MorphixAI" 검색
-- **Android**: [공식 웹사이트](https://baibian.app/)에서 다운로드
+- **Android**: [공식 웹사이트](https://morphix.app/)에서 다운로드
 - **웹**: [앱 마켓플레이스](https://app-shell.focusbe.com/app-market) 방문
 
 ## 📚 목차

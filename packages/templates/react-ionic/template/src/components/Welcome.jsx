@@ -14,11 +14,11 @@ import styles from '../styles/Welcome.module.css';
  */
 export default function Welcome() {
     const openDownload = () => {
-        window.open('https://baibian.app/mobile-download', '_blank');
+        window.open('https://morphix.app/mobile-download', '_blank');
     };
 
     const openWebsite = () => {
-        window.open('https://baibian.app/', '_blank');
+        window.open('https://morphix.app/', '_blank');
     };
 
     return (

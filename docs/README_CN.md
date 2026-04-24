@@ -6,7 +6,7 @@
 
 ### 📲 在哪里体验 MorphixAI？
 - **iOS**：App Store 搜索 “百变AI助手（MorphixAI）”
-- **Android**：前往[官方网站](https://baibian.app/)下载
+- **Android**：前往[官方网站](https://morphix.app/)下载
 - **Web**：打开[小工具市场](https://app-shell.focusbe.com/app-market)
 
 ## 📚 目录

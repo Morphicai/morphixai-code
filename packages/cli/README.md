@@ -218,7 +218,7 @@ With AI assistants, you can:
 ## 📱 Where to Experience MorphixAI?
 
 - **iOS**: Search "MorphixAI" in App Store
-- **Android**: [Download from official website](https://baibian.app/)
+- **Android**: [Download from official website](https://morphix.app/)
 - **Web**: [App Marketplace](https://app-shell.focusbe.com/app-market)
 
 ## 🌍 Publish & Share
@@ -294,4 +294,4 @@ If this project helps you, please give us a Star! ⭐
 
 ---
 
-**Built with ❤️ by the [MorphixAI](https://baibian.app/) Team**
+**Built with ❤️ by the [MorphixAI](https://morphix.app/) Team**
